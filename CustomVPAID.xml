@@ -28,9 +28,9 @@
                         </VideoClicks>
                         <TrackingEvents>
                             <Tracking event="start">/beacon?beacon_type=start</Tracking>
-                            <Tracking event="firstQuartile">/beacon?beacon_type=recurring&view_percent=25</Tracking>
-                            <Tracking event="midpoint">/beacon?beacon_type=recurring&view_percent=50</Tracking>
-                            <Tracking event="thirdQuartile">/beacon?beacon_type=recurring&view_percent=75</Tracking>
+                            <Tracking event="firstQuartile">/beacon?beacon_type=recurring%26view_percent=25</Tracking>
+                            <Tracking event="midpoint">/beacon?beacon_type=recurring%26view_percent=50</Tracking>
+                            <Tracking event="thirdQuartile">/beacon?beacon_type=recurring%26view_percent=75</Tracking>
                             <Tracking event="complete">/beacon?beacon_type=complete</Tracking>
                         </TrackingEvents>
                     </Linear>
