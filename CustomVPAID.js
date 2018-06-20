@@ -3600,9 +3600,6 @@ spotx.test.VPAIDAd.prototype.initAd = function(
     this.attributes_['viewMode'] = viewMode;
     this.attributes_['desiredBitrate'] = desiredBitrate;
 
-    console.log('Video Slot:');
-    console.dir(this.videoSlot_);
-
     this.log('initAd ' + width + 'x' + height + ' ' + viewMode + ' ' + desiredBitrate);
     this.renderSlot_();
     this.updateVideoSlot_();
@@ -3681,7 +3678,7 @@ spotx.test.VPAIDAd.prototype.renderSlot_ = function()
         this.slot_ = document.createElement('div');
         goog.style.setWidth(this.slot_, this.iWidth);
         goog.style.setHeight(this.slot_, this.iHeight);
-        // goog.style.setStyle(this.slot_, "background-color", "#e3e3e3");
+        goog.style.setStyle(this.slot_, "background-color", "#e3e3e3");
         goog.style.setStyle(this.slot_, "top", "0");
         goog.style.setStyle(this.slot_, "left", "0");
         goog.style.setStyle(this.slot_, "position", "absolute");
@@ -3752,6 +3749,7 @@ spotx.test.VPAIDAd.prototype.handshakeVersion = function(version)
 spotx.test.VPAIDAd.prototype.startAd = function()
 {
     this.log('Starting ad');
+    this.videoSlot_.play();
 
     this.startAdRemainingTimeCountdown(); // mocks playing
 
