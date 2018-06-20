@@ -3538,6 +3538,34 @@ spotx.test.VPAIDAd = function()
 
     this.adDurationCountdownInterval = null;
     this.startAdRemainingTimeCountdown();
+
+  /**
+   * @type {number} An index into what quartile was last reported.
+   * @private
+   */
+  this.lastQuartileIndex_ = 0;
+
+  /**
+   * A set of events to be reported.
+   * @type {Object}
+   * @private
+   */
+  this.quartileEvents_ = [
+    {event: 'AdImpression', value: 0},
+    {event: 'AdVideoStart', value: 0},
+    {event: 'AdVideoFirstQuartile', value: 25},
+    {event: 'AdVideoMidpoint', value: 50},
+    {event: 'AdVideoThirdQuartile', value: 75},
+    {event: 'AdVideoComplete', value: 100}
+  ];
+
+  /**
+   * An object containing all registered events.  These events are all
+   * callbacks for use by the VPAID ad.
+   * @type {Object}
+   * @private
+   */
+  this.eventsCallbacks_ = {};
 };
 
 spotx.test.VPAIDAd.prototype.startAdRemainingTimeCountdown = function() {
@@ -3603,6 +3631,7 @@ spotx.test.VPAIDAd.prototype.initAd = function(
     this.log('initAd ' + width + 'x' + height + ' ' + viewMode + ' ' + desiredBitrate);
     this.renderSlot_();
     this.updateVideoSlot_();
+    this.addSlotEventListeners_();
     // this.addButtonListeners_();
     // this.fillProperties_();
 
@@ -3686,6 +3715,43 @@ spotx.test.VPAIDAd.prototype.renderSlot_ = function()
         document.body.appendChild(this.slot_);
     }
     this.slot_.innerHTML = this.getAdTemplate();
+};
+
+
+spotx.test.VPAIDAd.prototype.addSlotEventListeners_= function() 
+{
+    this.videoSlot_.addEventListener(
+        'timeupdate',
+        this.timeUpdateHandler_.bind(this),
+        false);
+    this.videoSlot_.addEventListener(
+        'ended',
+        this.stopAd.bind(this),
+        false);
+}
+
+
+/**
+ * Called by the video element.  Calls events as the video reaches times.
+ * @private
+ */
+VpaidVideoPlayer.prototype.timeUpdateHandler_ = function() {
+  this.attributes_['remainingTime'] =
+      this.videoSlot_.duration - this.videoSlot_.currentTime;
+  if (this.lastQuartileIndex_ >= this.quartileEvents_.length) {
+    return;
+  }
+  var percentPlayed =
+      this.videoSlot_.currentTime * 100.0 / this.videoSlot_.duration;
+  if (percentPlayed >= this.quartileEvents_[this.lastQuartileIndex_].value) {
+    var lastQuartileEvent = this.quartileEvents_[this.lastQuartileIndex_].event;
+    this.eventsCallbacks_[lastQuartileEvent]();
+    this.lastQuartileIndex_ += 1;
+  }
+  if (this.attributes_['duration'] != this.videoSlot_.duration) {
+    this.attributes_['duration'] = this.videoSlot_.duration;
+    this.publish(spotx.iab.VPAID.VPAID2Event.AD_DURATION_CHANGE);
+  }
 };
 
 /**
@@ -3805,6 +3871,7 @@ spotx.test.VPAIDAd.prototype.resizeAd = function(width, height, viewMode)
 spotx.test.VPAIDAd.prototype.pauseAd = function()
 {
     this.log('pauseAd');
+    this.videoSlot_.pause();
 
     this.stopAdRemainingTimeCountdown(); // mocks playing
 
