@@ -3593,8 +3593,8 @@ spotx.test.VPAIDAd.prototype.publish = function(a, b) {
  */
 spotx.test.VPAIDAd.prototype.getAdTemplate = function()
 {
-    var strRetval = '<input type="button" value="ClickThru">' + 
-                    '<input type="button" value="Mute/Unmute">';
+    var strRetval = '<input id="clickthru" type="button" value="ClickThru">' + 
+                    '<input id="mute" type="button" value="Mute/Unmute">';
 
     return strRetval;
 }
@@ -3686,7 +3686,7 @@ spotx.test.VPAIDAd.prototype.updateVideoSlot_ = function() {
   }
   if (!foundSource) {
     // Unable to find a source video.
-    this.callEvent_('AdError');
+    this.publish(spotx.iab.VPAID.VPAID2Event.AD_ERROR);
   }
 };
 
@@ -3749,7 +3749,6 @@ spotx.test.VPAIDAd.prototype.timeUpdateHandler_ = function() {
       this.videoSlot_.currentTime * 100.0 / this.videoSlot_.duration;
   if (percentPlayed >= this.quartileEvents_[this.lastQuartileIndex_].value) {
     var lastQuartileEvent = this.quartileEvents_[this.lastQuartileIndex_].event;
-    // this.eventsCallbacks_[lastQuartileEvent]();
     this.publish(lastQuartileEvent);
     this.lastQuartileIndex_ += 1;
   }
@@ -3765,13 +3764,30 @@ spotx.test.VPAIDAd.prototype.timeUpdateHandler_ = function() {
  */
 spotx.test.VPAIDAd.prototype.addButtonListeners_ = function()
 {
+    // var eventSelect = this.getElement_('eventSelect');
+    // eventSelect.addEventListener('change', this.eventSelected_.bind(this));
 
-    // Here we will have to dd the event listeners for all of the VPAID buttons. 
-    var eventSelect = this.getElement_('eventSelect');
-    eventSelect.addEventListener('change', this.eventSelected_.bind(this));
+    // var triggerEvent = this.getElement_('triggerEvent');
+    // triggerEvent.addEventListener('click', this.triggerEvent_.bind(this));
 
-    var triggerEvent = this.getElement_('triggerEvent');
-    triggerEvent.addEventListener('click', this.triggerEvent_.bind(this));
+     // Here we will have to add the event listeners for all of the VPAID buttons. 
+     this.getElement_('mute').addEventListener('click', this.muteButtonOnClick_());
+     this.getElement_('clickthru').addEventListener('click', this.());
+};
+
+/**
+ * Callback for when the mute button is clicked.
+ * @private
+ */
+VpaidVideoPlayer.prototype.muteButtonOnClick_ = function() {
+  if (this.attributes_['volume'] == 0) {
+    this.attributes_['volume'] = 1.0;
+    this.videoSlot_.volume = 1.0;
+  } else {
+    this.attributes_['volume'] = 0.0;
+    this.videoSlot_.volume = 0.0;
+  }
+  this.publish(spotx.iab.VPAID.VPAID2Event.AD_VOLUME_CHANGE);
 };
 
 /**
@@ -3832,7 +3848,6 @@ spotx.test.VPAIDAd.prototype.startAd = function()
  */
 spotx.test.VPAIDAd.prototype.stopAd = function() {
     this.log('Stopping ad');
-    this.videoSlot_.stop();
 
     this.stopAdRemainingTimeCountdown(); // mocks playing
 
@@ -3893,7 +3908,7 @@ spotx.test.VPAIDAd.prototype.resumeAd = function() {
 
     this.startAdRemainingTimeCountdown(); // mocks playing
 
-    this.publish(spotx.iab.VPAID.VPAID2Event.AD_RESUMED);
+    this.publish(spotx.iab.VPAID.VPAID2Event.AD_PLAYING);
 };
 
 /**
