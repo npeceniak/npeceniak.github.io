@@ -1,8 +1,8 @@
 <VAST xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="vast.xsd" version="2.0">
-    <Ad id="8394310323">
+    <Ad id="1234.5678.9012">
         <InLine>
-            <AdTitle><![CDATA[ Spox Controlled VPAID ]]></AdTitle>
-            <Description><![CDATA[ Spox Controlled VPAID ]]></Description>
+            <AdTitle><![CDATA[ Spotx Controlled VPAID ]]></AdTitle>
+            <Description><![CDATA[ Spotx Controlled VPAID ]]></Description>
             <Error>/error</Error>
             <Impression>/impression</Impression>
             <Creatives>
@@ -11,28 +11,9 @@
                         <Duration>00:00:15</Duration>
                         <MediaFiles>
                             <MediaFile apiFramework="VPAID" type="application/javascript">
-                            https://npeceniak.github.io/SampleVPAID.js
+                            https://npeceniak.github.io/CustomVPAID.js
                             </MediaFile>
                         </MediaFiles>
-                        <AdParameters>
-                        <![CDATA[{ 
-                            "videos": [{ 
-                                "url":"http://cdn.spotxcdn.com/website/integration_test/media/2017_q1/Video/SpotX_green_15_1366.mp4",
-                                "mimetype":"video/mp4"
-                            }]
-                        }]]>
-                        </AdParameters>
-                        <VideoClicks>
-                            <ClickThrough id="123">http://spotx.tv</ClickThrough>
-                            <ClickTracking id="123">/beacon?beacon_type=click</ClickTracking>
-                        </VideoClicks>
-                        <TrackingEvents>
-                            <Tracking event="start">/beacon?beacon_type=start</Tracking>
-                            <Tracking event="firstQuartile">/beacon?beacon_type=recurring%26view_percent=25</Tracking>
-                            <Tracking event="midpoint">/beacon?beacon_type=recurring%26view_percent=50</Tracking>
-                            <Tracking event="thirdQuartile">/beacon?beacon_type=recurring%26view_percent=75</Tracking>
-                            <Tracking event="complete">/beacon?beacon_type=complete</Tracking>
-                        </TrackingEvents>
                     </Linear>
                 </Creative>
             </Creatives>
