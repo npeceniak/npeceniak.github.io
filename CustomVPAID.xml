@@ -17,7 +17,7 @@
                         <AdParameters>
                         <![CDATA[{ 
                             "videos": [{ 
-                                "url":"https://testweb.spotx.tv/80s/qa/mp4/Cattitude2.mp4",
+                                "url":"http://cdn.spotxcdn.com/website/integration_test/media/2017_q1/Video/SpotX_green_15_1366.mp4",
                                 "mimetype":"video/mp4"
                             }]
                         }]]>

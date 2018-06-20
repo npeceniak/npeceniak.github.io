@@ -51,7 +51,7 @@ var VpaidVideoPlayer = function() {
     'skippableState' : false,
     'viewMode' : 'normal',
     'width' : 0,
-    'volume' : 1.0
+    'volume' : 0.5
   };
 
   /**
@@ -117,8 +117,14 @@ VpaidVideoPlayer.prototype.initAd = function(
   this.slot_ = environmentVars.slot;
   this.videoSlot_ = environmentVars.videoSlot;
 
+  this.log('Creative Data: ');
+  console.dir(creativeData);
+
   // Parse the incoming parameters.
   this.parameters_ = JSON.parse(creativeData['AdParameters']);
+
+  this.log('Parameters passed in: ');
+  console.dir(this.parameters_);
 
   this.log('initAd ' + width + 'x' + height +
       ' ' + viewMode + ' ' + desiredBitrate);
@@ -147,6 +153,7 @@ VpaidVideoPlayer.prototype.overlayOnClick_ = function() {
   if ('AdClickThru' in this.eventsCallbacks_) {
     this.eventsCallbacks_['AdClickThru']('','0', true);
   };
+  this.pauseAd();
 };
 
 
