@@ -3607,7 +3607,7 @@ spotx.test.VPAIDAd.prototype.initAd = function(
     this.renderSlot_();
     this.updateVideoSlot_();
     // this.addButtonListeners_();
-    this.fillProperties_();
+    // this.fillProperties_();
 
     this.aVpaidEventsToFire = [];
 
