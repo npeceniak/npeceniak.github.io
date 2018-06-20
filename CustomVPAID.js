@@ -3558,14 +3558,6 @@ spotx.test.VPAIDAd = function()
     {event: spotx.iab.VPAID.VPAID2Event.AD_VIDEO_THIRD_QUARTILE, value: 75},
     {event: spotx.iab.VPAID.VPAID2Event.AD_VIDEO_COMPLETE, value: 100}
   ];
-
-  /**
-   * An object containing all registered events.  These events are all
-   * callbacks for use by the VPAID ad.
-   * @type {Object}
-   * @private
-   */
-  this.eventsCallbacks_ = {};
 };
 
 spotx.test.VPAIDAd.prototype.startAdRemainingTimeCountdown = function() {
@@ -3732,6 +3724,10 @@ spotx.test.VPAIDAd.prototype.addSlotEventListeners_= function()
         'play',
         this.resumeAd.bind(this),
         false);
+    this.videoSlot_.addEventListener(
+        'pause',
+        this.pauseAd.bind(this),
+        false);
 }
 
 
@@ -3781,7 +3777,6 @@ spotx.test.VPAIDAd.prototype.addButtonListeners_ = function()
     console.log("ClickThru button: ");
     console.dir(clickThruButton);
     clickThruButton.addEventListener('click', this.adClickThruHandler_.bind(this));
-    // this.getElement_('clickthru').addEventListener('click', this.adClickThruHandler_());
 };
 
 /**
@@ -4064,10 +4059,10 @@ spotx.test.VPAIDAd.prototype.log = function(message)
 spotx.test.VPAIDAd.prototype.adClickThruHandler_ = function()
 {
     console.log("ClickThru button click listener function");
-    if (!this.isEventSubscribed_('AdClickThru')) {
-        this.log('Error: AdClickThru function callback not subscribed.');
-        return;
-    }
+    // if (!this.isEventSubscribed_('AdClickThru')) {
+    //     this.log('Error: AdClickThru function callback not subscribed.');
+    //     return;
+    // }
     // var clickThruUrl = this.getElement_('clickThruUrl').value;
     // var clickThruId = this.getElement_('clickThruId').value;
     // var clickThruPlayerHandles =
@@ -4076,12 +4071,14 @@ spotx.test.VPAIDAd.prototype.adClickThruHandler_ = function()
     var clickThruUrl = 'https://spotx.tv';
     var clickThruId = '1234';
     var clickThruPlayerHandles = true;
-    this.log('AdClickThu(' + clickThruUrl + ',' +
+    this.log('AdClickThru(' + clickThruUrl + ',' +
         clickThruId + ',' + clickThruPlayerHandles + ')');
-    this.eventCallbacks_['AdClickThru'](
-        clickThruUrl,
-        clickThruId,
-        clickThruPlayerHandles);
+    // this.eventCallbacks_['AdClickThru'](
+    //     clickThruUrl,
+    //     clickThruId,
+    //     clickThruPlayerHandles);
+
+    this.publish(spotx.iab.VPAID.VPAID2Event.AD_CLICKED);
 };
 
 /**
