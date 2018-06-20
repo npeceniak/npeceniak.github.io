@@ -3720,14 +3720,10 @@ spotx.test.VPAIDAd.prototype.addSlotEventListeners_= function()
         'ended',
         this.stopAd.bind(this),
         false);
-    this.videoSlot_.addEventListener(
-        'play',
-        this.resumeAd.bind(this),
-        false);
-    this.videoSlot_.addEventListener(
-        'pause',
-        this.pauseAd.bind(this),
-        false);
+    // this.videoSlot_.addEventListener(
+    //     'play',
+    //     this.resumeAd.bind(this),
+    //     false);
 }
 
 
@@ -4071,14 +4067,14 @@ spotx.test.VPAIDAd.prototype.adClickThruHandler_ = function()
     var clickThruUrl = 'https://spotx.tv';
     var clickThruId = '1234';
     var clickThruPlayerHandles = true;
-    this.log('AdClickThru(' + clickThruUrl + ',' +
+    console.log('AdClickThru(' + clickThruUrl + ',' +
         clickThruId + ',' + clickThruPlayerHandles + ')');
     // this.eventCallbacks_['AdClickThru'](
     //     clickThruUrl,
     //     clickThruId,
     //     clickThruPlayerHandles);
 
-    this.publish(spotx.iab.VPAID.VPAID2Event.AD_CLICKED);
+    this.publish(spotx.iab.VPAID.VPAID2Event.AD_CLICKED(clickThruUrl, clickThruId, clickThruPlayerHandles));
 };
 
 /**
