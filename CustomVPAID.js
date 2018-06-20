@@ -3770,12 +3770,18 @@ spotx.test.VPAIDAd.prototype.addButtonListeners_ = function()
     // var triggerEvent = this.getElement_('triggerEvent');
     // triggerEvent.addEventListener('click', this.triggerEvent_.bind(this));
 
-     // Here we will have to add the event listeners for all of the VPAID buttons. 
-     var muteButton = this.getElement_('mute');
-     console.log("Mute button: ");
-     console.dir(muteButton);
-     muteButton.addEventListener('click', this.muteButtonOnClick_());
-     // this.getElement_('clickthru').addEventListener('click', this.adClickThruHandler_());
+    // Here we will have to add the event listeners for all of the VPAID buttons. 
+    var muteButton = this.getElement_('mute');
+    console.log("Mute button: ");
+    console.dir(muteButton);
+    muteButton.addEventListener('click', this.muteButtonOnClick_.bind(this));
+
+
+    var clickThruButton = this.getElement_('clickthru');
+    console.log("ClickThru button: ");
+    console.dir(clickThruButton);
+    clickThruButton.addEventListener('click', this.adClickThruHandler_.bind(this));
+    // this.getElement_('clickthru').addEventListener('click', this.adClickThruHandler_());
 };
 
 /**
