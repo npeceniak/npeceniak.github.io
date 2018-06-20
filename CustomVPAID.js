@@ -3780,6 +3780,7 @@ spotx.test.VPAIDAd.prototype.addButtonListeners_ = function()
  * @private
  */
 spotx.test.VPAIDAd.prototype.muteButtonOnClick_ = function() {
+  console.log("Mute button click listener function");
   if (this.attributes_['volume'] == 0) {
     this.attributes_['volume'] = 1.0;
     this.videoSlot_.volume = 1.0;
@@ -4053,6 +4054,7 @@ spotx.test.VPAIDAd.prototype.log = function(message)
  */
 spotx.test.VPAIDAd.prototype.adClickThruHandler_ = function()
 {
+    console.log("ClickThru button click listener function");
     if (!this.isEventSubscribed_('AdClickThru')) {
         this.log('Error: AdClickThru function callback not subscribed.');
         return;
