@@ -3646,7 +3646,10 @@ spotx.test.VPAIDAd.prototype.updateVideoSlot_ = function() {
   // there should be no need to change element sizes from the start.
   //this.updateVideoPlayerSize_();
   var foundSource = false;
-  var videos = this.parameters_.videos || [];
+  // We can pass the video and mimetype in via parameters if this line is used.
+  // var videos = this.parameters_.videos || [];
+
+  var videos = [{'url':'http://cdn.spotxcdn.com/website/integration_test/media/2017_q1/Video/SpotX_green_15_1366.mp4', 'mimetype':'video/mp4'}]
   for (var i = 0; i < videos.length; i++) {
     // Choose the first video with a supported mimetype.
     if (this.videoSlot_.canPlayType(videos[i].mimetype) != '') {
