@@ -3779,7 +3779,7 @@ spotx.test.VPAIDAd.prototype.addButtonListeners_ = function()
  * Callback for when the mute button is clicked.
  * @private
  */
-VpaidVideoPlayer.prototype.muteButtonOnClick_ = function() {
+spotx.test.VPAIDAd.prototype.muteButtonOnClick_ = function() {
   if (this.attributes_['volume'] == 0) {
     this.attributes_['volume'] = 1.0;
     this.videoSlot_.volume = 1.0;
