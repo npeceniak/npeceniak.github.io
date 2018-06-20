@@ -3772,7 +3772,7 @@ spotx.test.VPAIDAd.prototype.addButtonListeners_ = function()
 
      // Here we will have to add the event listeners for all of the VPAID buttons. 
      this.getElement_('mute').addEventListener('click', this.muteButtonOnClick_());
-     this.getElement_('clickthru').addEventListener('click', this.());
+     this.getElement_('clickthru').addEventListener('click', this.adClickThruHandler_());
 };
 
 /**
@@ -4057,10 +4057,14 @@ spotx.test.VPAIDAd.prototype.adClickThruHandler_ = function()
         this.log('Error: AdClickThru function callback not subscribed.');
         return;
     }
-    var clickThruUrl = this.getElement_('clickThruUrl').value;
-    var clickThruId = this.getElement_('clickThruId').value;
-    var clickThruPlayerHandles =
-        this.getElement_('clickThruPlayerHandels').value;
+    // var clickThruUrl = this.getElement_('clickThruUrl').value;
+    // var clickThruId = this.getElement_('clickThruId').value;
+    // var clickThruPlayerHandles =
+    //     this.getElement_('clickThruPlayerHandels').value;
+
+    var clickThruUrl = 'https://spotx.tv';
+    var clickThruId = '1234';
+    var clickThruPlayerHandles = true;
     this.log('AdClickThu(' + clickThruUrl + ',' +
         clickThruId + ',' + clickThruPlayerHandles + ')');
     this.eventCallbacks_['AdClickThru'](
