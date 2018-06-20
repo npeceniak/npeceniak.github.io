@@ -3720,10 +3720,6 @@ spotx.test.VPAIDAd.prototype.addSlotEventListeners_= function()
         'ended',
         this.stopAd.bind(this),
         false);
-    // this.videoSlot_.addEventListener(
-    //     'play',
-    //     this.resumeAd.bind(this),
-    //     false);
 }
 
 
@@ -4074,7 +4070,7 @@ spotx.test.VPAIDAd.prototype.adClickThruHandler_ = function()
     //     clickThruId,
     //     clickThruPlayerHandles);
 
-    this.publish(spotx.iab.VPAID.VPAID2Event.AD_CLICKED(clickThruUrl, clickThruId, clickThruPlayerHandles));
+    this.publish(spotx.iab.VPAID.VPAID2Event.AD_CLICKED);
 };
 
 /**
