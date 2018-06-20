@@ -3832,6 +3832,7 @@ spotx.test.VPAIDAd.prototype.startAd = function()
  */
 spotx.test.VPAIDAd.prototype.stopAd = function() {
     this.log('Stopping ad');
+    this.videoSlot_.stop();
 
     this.stopAdRemainingTimeCountdown(); // mocks playing
 
