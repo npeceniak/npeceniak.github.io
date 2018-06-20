@@ -3735,7 +3735,7 @@ spotx.test.VPAIDAd.prototype.addSlotEventListeners_= function()
  * Called by the video element.  Calls events as the video reaches times.
  * @private
  */
-VpaidVideoPlayer.prototype.timeUpdateHandler_ = function() {
+spotx.test.VPAIDAd.prototype.timeUpdateHandler_ = function() {
   this.attributes_['remainingTime'] =
       this.videoSlot_.duration - this.videoSlot_.currentTime;
   if (this.lastQuartileIndex_ >= this.quartileEvents_.length) {
