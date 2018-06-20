@@ -3729,9 +3729,9 @@ spotx.test.VPAIDAd.prototype.addSlotEventListeners_= function()
         this.stopAd.bind(this),
         false);
     this.videoSlot_.addEventListener(
-      'play',
-      this.videoResume_.bind(this),
-      false);
+        'play',
+        this.resumeAd.bind(this),
+        false);
 }
 
 
