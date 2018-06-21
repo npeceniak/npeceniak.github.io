@@ -3754,7 +3754,7 @@ spotx.test.VPAIDAd.prototype.addButtonListeners_ = function()
     pauseButton.addEventListener('click', this.pauseOnClick_.bind(this));
 
     var muteButton = this.getElement_('muteBtn');
-    muteButton.addEventListener('click', this.muteButtonOnClick_.bind(this));
+    muteButton.addEventListener('click', this.muteButtonOnClick_());
 
     var clickThruButton = this.getElement_('clickthruBtn');
     clickThruButton.addEventListener('click', this.adClickThruHandler_.bind(this));
