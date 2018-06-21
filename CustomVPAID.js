@@ -3524,16 +3524,16 @@ spotx.test.VPAIDAd = function()
     this.attributes_ = {
         'companions' : '',
         'desiredBitrate' : 256,
-        'duration' : 15,
+        'duration' : 16,
         'expanded' : false,
         'height' : 0,
         'icons' : '',
         'linear' : true,
-        'remainingTime' : 15,
+        'remainingTime' : 16,
         'skippableState' : false,
         'viewMode' : 'normal',
         'width' : 0,
-        'volume' : 50
+        'volume' : 0.5
     };
 
     this.adDurationCountdownInterval = null;
