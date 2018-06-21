@@ -3770,13 +3770,13 @@ spotx.test.VPAIDAd.prototype.muteButtonOnClick_ = function() {
   console.log("Mute button click listener function");
   console.log(this.getAdVolume());
   if (this.getAdVolume() == 0) {
-    // this.setAdVolume(1)
+    this.setAdVolume(1)
     console.log("Setting Full volume.");
-    this.videoSlot_.volume = 1.0;
+    this.videoSlot_.volume = 1;
   } else {
-    // this.setAdVolume(0)
+    this.setAdVolume(0)
     console.log("Muting volume.");
-    this.videoSlot_.volume = 0.0;
+    this.videoSlot_.volume = 0;
   }
 };
 
