@@ -3,8 +3,9 @@
         <InLine>
             <AdTitle><![CDATA[ Spotx Controlled VPAID ]]></AdTitle>
             <Description><![CDATA[ Spotx Controlled VPAID ]]></Description>
-            <Error>/error</Error>
-            <Impression>/impression</Impression>
+            <VideoClicks>
+                <ClickThrough id="123">http://spotx.tv</ClickThrough>
+            </VideoClicks>
             <Creatives>
                 <Creative sequence="1">
                     <Linear>
