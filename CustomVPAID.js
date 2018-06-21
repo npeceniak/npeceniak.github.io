@@ -3752,16 +3752,16 @@ spotx.test.VPAIDAd.prototype.timeUpdateHandler_ = function() {
 spotx.test.VPAIDAd.prototype.addButtonListeners_ = function()
 {
     var pauseButton = this.getElement_('pauseBtn');
-    pauseButton.addEventListener('click', this.pauseAd()); //this.pauseOnClick_.bind(this));
+    pauseButton.addEventListener('click', this.pauseOnClick_.bind(this));
 
     var clickThruButton = this.getElement_('clickthruBtn');
     clickThruButton.addEventListener('click', this.adClickThruHandler_.bind(this));
 
     var muteButton = this.getElement_('muteBtn');
-    muteButton.addEventListener('click', this.setAdVolume(0));
+    muteButton.addEventListener('click', this.muteButtonOnClick_.bind(this));
 
     var unmuteButton = this.getElement_('unmuteBtn');
-    unmuteButton.addEventListener('click', this.setAdVolume(0.9));
+    unmuteButton.addEventListener('click', this.unmuteButtonOnClick_.bind(this));
 
 };
 
@@ -3973,15 +3973,31 @@ spotx.test.VPAIDAd.prototype.pauseOnClick_ = function() {
 spotx.test.VPAIDAd.prototype.muteButtonOnClick_ = function() {
   console.log("Mute button click listener function");
   console.log(this.getAdVolume());
-  if (this.getAdVolume() == 0) {
-    this.setAdVolume(0.7)
-    console.log("Setting Full volume.");
-    this.videoSlot_.volume = 1;
-  } else {
-    this.setAdVolume(0)
+  // if (this.getAdVolume() == 0) {
+  //   this.setAdVolume(0.7)
+  //   console.log("Setting Full volume.");
+  //   this.videoSlot_.volume = 1;
+  // } else {
+  //   this.setAdVolume(0)
+  //   console.log("Muting volume.");
+  //   this.videoSlot_.volume = 0;
+  // }
+
+    this.setAdVolume(0);
     console.log("Muting volume.");
     this.videoSlot_.volume = 0;
-  }
+};
+
+/**
+ * Callback for when the unmute button is clicked.
+ * @private
+ */
+spotx.test.VPAIDAd.prototype.unmuteButtonOnClick_ = function() {
+    console.log("Mute button click listener function");
+    console.log(this.getAdVolume());
+    this.setAdVolume(0.9);
+    console.log("Setting fullish volume.");
+    this.videoSlot_.volume = 1;
 };
 
 /**
