@@ -3585,8 +3585,7 @@ spotx.test.VPAIDAd.prototype.publish = function(a, b) {
  */
 spotx.test.VPAIDAd.prototype.getAdTemplate = function()
 {
-    var strRetval = '<input id="playBtn" type="button" value="Play">' +
-                    '<input id="pauseBtn" type="button" value="Pause">' +
+    var strRetval = '<input id="pauseBtn" type="button" value="Pause">' +
                     '<input id="clickthruBtn" type="button" value="ClickThru">' + 
                     '<input id="muteBtn" type="button" value="Mute/Unmute">';
 
@@ -3751,9 +3750,6 @@ spotx.test.VPAIDAd.prototype.timeUpdateHandler_ = function() {
  */
 spotx.test.VPAIDAd.prototype.addButtonListeners_ = function()
 {
-    var playButton = this.getElement_('playBtn');
-    playButton.addEventListener('click', this.playOnClick_.bind(this));
-
     var pauseButton = this.getElement_('pauseBtn');
     pauseButton.addEventListener('click', this.pauseOnClick_.bind(this));
 
@@ -3959,10 +3955,6 @@ spotx.test.VPAIDAd.prototype.getAdLinear = function()
 {
     return this.attributes_['linear'];
 };
-
-spotx.test.VPAIDAd.prototype.playOnClick_ = function() {
-    this.resumeAd();
-}
 
 spotx.test.VPAIDAd.prototype.pauseOnClick_ = function() {
     this.pauseAd();
