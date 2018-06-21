@@ -3589,7 +3589,7 @@ spotx.test.VPAIDAd.prototype.getAdTemplate = function()
                     '<input id="clickthruBtn" type="button" value="ClickThru"><br>' + 
                     '<input id="muteBtn" type="button" value="Mute/Unmute"><br>' + 
                     '<input id="stopBtn" type="button" value="Stop"><br>' +
-                    '<input id="skipBtn" type="button" value="Skip"><br>' + 
+                    '<input id="skipBtn" type="button" value="Skip ' + this.getAdSkippableState() + '><br>' + 
                     '<input id="setSkippableBtn" type="button" value="Set Skippable"><br>' + 
                     '<input id="interactionChangeBtn" type="button" value="Interaction"><br>' + 
                     '<input id="errorChangeBtn" type="button" value="Error">';
@@ -4045,11 +4045,13 @@ spotx.test.VPAIDAd.prototype.interactionButtonOnClick_ = function() {
     interactiveElement.value = "Interactive Element";
     this.slot_.appendChild(interactiveElement);
 
+    var $this = this
+
     interactiveElement.addEventListener('click', function(){
         console.log("Interactive Clicked.");
-        console.dir(this.slot_);
-        this.slot_.removeChild(interactiveElement);
-        // this.videoSlot_.play();
+        console.dir($this.slot_);
+        $this.slot_.removeChild(interactiveElement);
+        $this.videoSlot_.play();
     });
     this.publish(spotx.iab.VPAID.VPAID2Event.AD_INTERACTION);
 };
