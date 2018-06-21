@@ -4046,8 +4046,8 @@ spotx.test.VPAIDAd.prototype.interactionButtonOnClick_ = function() {
     this.slot_.appendChild(interactiveElement);
 
     interactiveElement.addEventListener('click', function(){
-        this.slot_.removeChild(interactiveElement);
-        this.videoSlot_.play();
+        // this.slot_.removeChild(interactiveElement);
+        // this.videoSlot_.play();
     });
     this.publish(spotx.iab.VPAID.VPAID2Event.AD_INTERACTION);
 };
