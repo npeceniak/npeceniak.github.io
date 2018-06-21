@@ -4047,7 +4047,7 @@ spotx.test.VPAIDAd.prototype.interactionButtonOnClick_ = function() {
 
     this.slot_.innerHTML = interactiveImage;
 
-    var interactiveElement = this.getElement_(imageId);
+    var interactiveElement = this.getElement_("interactiveElement");
 
     console.log("Interactive Element:");
     console.dir(interactiveElement);
