@@ -3585,9 +3585,10 @@ spotx.test.VPAIDAd.prototype.publish = function(a, b) {
  */
 spotx.test.VPAIDAd.prototype.getAdTemplate = function()
 {
-    var strRetval = '<input id="playpause" type="button" value="Play/Pause">' +
-                    '<input id="clickthru" type="button" value="ClickThru">' + 
-                    '<input id="mute" type="button" value="Mute/Unmute">';
+    var strRetval = '<input id="playBtn" type="button" value="Play">' +
+                    '<input id="pauseBtn" type="button" value="Pause">' +
+                    '<input id="clickthruBtn" type="button" value="ClickThru">' + 
+                    '<input id="muteBtn" type="button" value="Mute/Unmute">';
 
     return strRetval;
 }
@@ -3750,20 +3751,16 @@ spotx.test.VPAIDAd.prototype.timeUpdateHandler_ = function() {
  */
 spotx.test.VPAIDAd.prototype.addButtonListeners_ = function()
 {
-    var playpauseButton = this.getElement_('playpause');
-    console.log("Play/Pause button: ");
-    console.dir(playpauseButton);
-    playpauseButton.addEventListener('click', this.playPauseOnClick_.bind(this));
+    var playButton = this.getElement_('playBtn');
+    playButton.addEventListener('click', this.playOnClick_.bind(this));
 
-    var muteButton = this.getElement_('mute');
-    console.log("Mute button: ");
-    console.dir(muteButton);
+    var pauseButton = this.getElement_('pauseBtn');
+    pauseButton.addEventListener('click', this.pauseOnClick_.bind(this));
+
+    var muteButton = this.getElement_('muteBtn');
     muteButton.addEventListener('click', this.muteButtonOnClick_.bind(this));
 
-
-    var clickThruButton = this.getElement_('clickthru');
-    console.log("ClickThru button: ");
-    console.dir(clickThruButton);
+    var clickThruButton = this.getElement_('clickthruBtn');
     clickThruButton.addEventListener('click', this.adClickThruHandler_.bind(this));
 };
 
@@ -3963,9 +3960,11 @@ spotx.test.VPAIDAd.prototype.getAdLinear = function()
     return this.attributes_['linear'];
 };
 
+spotx.test.VPAIDAd.prototype.playOnClick_ = function() {
+    this.resumeAd();
+}
 
-spotx.test.VPAIDAd.prototype.playPauseOnClick_ = function() {
-    console.log("Pausing ad...");
+spotx.test.VPAIDAd.prototype.pauseOnClick_ = function() {
     this.pauseAd();
 }
 
