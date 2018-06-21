@@ -3788,13 +3788,12 @@ spotx.test.VPAIDAd.prototype.muteButtonOnClick_ = function() {
   if (this.getAdVolume() == 0) {
     this.setAdVolume(1)
     console.log("Setting Full volume.");
-    // this.videoSlot_.volume = 1;
+    this.videoSlot_.volume = 1.0;
   } else {
     this.setAdVolume(0)
     console.log("Muting volume.");
-    // this.videoSlot_.volume = 0;
+    this.videoSlot_.volume = 0.0;
   }
-  // this.publish(spotx.iab.VPAID.VPAID2Event.AD_VOLUME_CHANGE);
 };
 
 /**
@@ -4080,7 +4079,9 @@ spotx.test.VPAIDAd.prototype.adClickThruHandler_ = function()
     //     clickThruId,
     //     clickThruPlayerHandles);
 
-    this.publish(spotx.iab.VPAID.VPAID2Event.AD_CLICKED);
+    dispatchEvent(new Event(spotx.iab.VPAID.VPAID2Event.AD_CLICKED, clickThruUrl, clickThruId, clickThruPlayerHandles));
+
+
 };
 
 /**
