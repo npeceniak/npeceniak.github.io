@@ -3585,13 +3585,13 @@ spotx.test.VPAIDAd.prototype.publish = function(a, b) {
  */
 spotx.test.VPAIDAd.prototype.getAdTemplate = function()
 {
-    var strRetval = '<input id="pauseBtn" type="button" value="Pause">' +
-                    '<input id="clickthruBtn" type="button" value="ClickThru">' + 
-                    '<input id="muteBtn" type="button" value="Mute/Unmute">' + 
-                    '<input id="stopBtn" type="button" value="Stop">' +
-                    '<input id="skipBtn" type="button" value="Skip">' + 
-                    '<input id="setSkippableBtn" type="button" value="Set Skippable">' + 
-                    '<input id="interactionChangeBtn" type="button" value="Interaction">' + 
+    var strRetval = '<input id="pauseBtn" type="button" value="Pause"><br>' +
+                    '<input id="clickthruBtn" type="button" value="ClickThru"><br>' + 
+                    '<input id="muteBtn" type="button" value="Mute/Unmute"><br>' + 
+                    '<input id="stopBtn" type="button" value="Stop"><br>' +
+                    '<input id="skipBtn" type="button" value="Skip"><br>' + 
+                    '<input id="setSkippableBtn" type="button" value="Set Skippable"><br>' + 
+                    '<input id="interactionChangeBtn" type="button" value="Interaction"><br>' + 
                     '<input id="errorChangeBtn" type="button" value="Error">';
 
     return strRetval;
