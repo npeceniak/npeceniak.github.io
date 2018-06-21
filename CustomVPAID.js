@@ -3771,10 +3771,10 @@ spotx.test.VPAIDAd.prototype.addButtonListeners_ = function()
     clickThruButton.addEventListener('click', this.adClickThruHandler_.bind(this));
 
 
-    var videoClickThru = document.querySelector('video')
+    var bodyClickThru = document.querySelector('body')
     console.log("ClickThru button: ");
-    console.dir(videoClickThru);
-    videoClickThru.addEventListener('click', this.adClickThruHandler_.bind(this));
+    console.dir(bodyClickThru);
+    bodyClickThru.addEventListener('click', this.adClickThruHandler_.bind(this));
 
 
 };
@@ -3785,14 +3785,14 @@ spotx.test.VPAIDAd.prototype.addButtonListeners_ = function()
  */
 spotx.test.VPAIDAd.prototype.muteButtonOnClick_ = function() {
   console.log("Mute button click listener function");
-  if (this.attributes_['volume'] == 0) {
-    this.attributes_['volume'] = 1;
+  if (this.getAdVolume() == 0) {
+    this.setAdVolume(1)
     this.videoSlot_.volume = 1;
   } else {
-    this.attributes_['volume'] = 0;
+    this.setAdVolume(0)
     this.videoSlot_.volume = 0;
   }
-  this.publish(spotx.iab.VPAID.VPAID2Event.AD_VOLUME_CHANGE);
+  // this.publish(spotx.iab.VPAID.VPAID2Event.AD_VOLUME_CHANGE);
 };
 
 /**
