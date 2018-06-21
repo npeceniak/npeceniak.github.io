@@ -3786,11 +3786,11 @@ spotx.test.VPAIDAd.prototype.addButtonListeners_ = function()
 spotx.test.VPAIDAd.prototype.muteButtonOnClick_ = function() {
   console.log("Mute button click listener function");
   if (this.attributes_['volume'] == 0) {
-    this.attributes_['volume'] = 1.0;
-    this.videoSlot_.volume = 1.0;
+    this.attributes_['volume'] = 1;
+    this.videoSlot_.volume = 1;
   } else {
-    this.attributes_['volume'] = 0.0;
-    this.videoSlot_.volume = 0.0;
+    this.attributes_['volume'] = 0;
+    this.videoSlot_.volume = 0;
   }
   this.publish(spotx.iab.VPAID.VPAID2Event.AD_VOLUME_CHANGE);
 };
