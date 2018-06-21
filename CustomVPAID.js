@@ -4043,7 +4043,8 @@ spotx.test.VPAIDAd.prototype.interactionButtonOnClick_ = function() {
         imageSrc = 'https://www.spotx.tv/wp-content/uploads/preloader.png',
         imageHeight = (this.getAdHeight() / 2),
         imageWidth = (this.getAdWidth() / 2),
-        interactiveImage = `<img id="${imageId}" src="${imageSrc}" height="${imageHeight} width="${imageWidth}>`;
+        interactiveImage = `<div align="center"><img id="${imageId}" src="${imageSrc}" height="${imageHeight} width="${imageWidth}><br>` + 
+                        "<label>Click Image to resume ad.</label></div>";
 
     this.slot_.innerHTML = interactiveImage;
 
