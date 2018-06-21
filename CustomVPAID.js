@@ -3587,8 +3587,7 @@ spotx.test.VPAIDAd.prototype.getAdTemplate = function()
 {
     var strRetval = '<input id="pauseBtn" type="button" value="Pause">' +
                     '<input id="clickthruBtn" type="button" value="ClickThru">' + 
-                    '<input id="muteBtn" type="button" value="Mute">' + 
-                    '<input id="unmuteBtn" type="button" value="Unmute">';
+                    '<input id="muteBtn" type="button" value="Mute/Unmute">';
 
     return strRetval;
 }
@@ -3759,10 +3758,6 @@ spotx.test.VPAIDAd.prototype.addButtonListeners_ = function()
 
     var muteButton = this.getElement_('muteBtn');
     muteButton.addEventListener('click', this.muteButtonOnClick_.bind(this));
-
-    var unmuteButton = this.getElement_('unmuteBtn');
-    unmuteButton.addEventListener('click', this.unmuteButtonOnClick_.bind(this));
-
 };
 
 /**
@@ -3971,33 +3966,15 @@ spotx.test.VPAIDAd.prototype.pauseOnClick_ = function() {
  * @private
  */
 spotx.test.VPAIDAd.prototype.muteButtonOnClick_ = function() {
-  console.log("Mute button click listener function");
-  console.log(this.getAdVolume());
-  // if (this.getAdVolume() == 0) {
-  //   this.setAdVolume(0.7)
-  //   console.log("Setting Full volume.");
-  //   this.videoSlot_.volume = 1;
-  // } else {
-  //   this.setAdVolume(0)
-  //   console.log("Muting volume.");
-  //   this.videoSlot_.volume = 0;
-  // }
-
-    this.setAdVolume(0);
+  if (this.getAdVolume() == 0) {
+    this.setAdVolume(1)
+    console.log("Setting Full volume.");
+    this.videoSlot_.volume = this.getAdVolume();
+  } else {
+    this.setAdVolume(0)
     console.log("Muting volume.");
-    this.videoSlot_.volume = 0;
-};
-
-/**
- * Callback for when the unmute button is clicked.
- * @private
- */
-spotx.test.VPAIDAd.prototype.unmuteButtonOnClick_ = function() {
-    console.log("Mute button click listener function");
-    console.log(this.getAdVolume());
-    this.setAdVolume(0.9);
-    console.log("Setting fullish volume.");
-    this.videoSlot_.volume = 1;
+    this.videoSlot_.volume = this.getAdVolume();
+  }
 };
 
 /**
