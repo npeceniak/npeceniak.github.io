@@ -4038,6 +4038,17 @@ spotx.test.VPAIDAd.prototype.setSkippableButtonOnClick_ = function() {
 
 spotx.test.VPAIDAd.prototype.interactionButtonOnClick_ = function() {
     console.log("Interaction Button Clicked.");
+    this.videoSlot_.pause();
+    interactiveElement = document.createElement('input');
+    interactiveElement.id = "interactiveElement"
+    interactiveElement.type = "button";
+    interactiveElement.value = "Interactive Element";
+    this.slot_.appendChild(interactiveElement);
+
+    interactiveElement.addEventListener('click', function(this){
+        this.slot_.removeChild(interactiveElement);
+        this.videoSlot_.play();
+    });
     this.publish(spotx.iab.VPAID.VPAID2Event.AD_INTERACTION);
 };
 
