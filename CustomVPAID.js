@@ -4045,7 +4045,7 @@ spotx.test.VPAIDAd.prototype.interactionButtonOnClick_ = function() {
     interactiveElement.value = "Interactive Element";
     this.slot_.appendChild(interactiveElement);
 
-    interactiveElement.addEventListener('click', function(this){
+    interactiveElement.addEventListener('click', function(){
         this.slot_.removeChild(interactiveElement);
         this.videoSlot_.play();
     });
