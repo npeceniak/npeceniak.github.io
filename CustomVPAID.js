@@ -4039,10 +4039,11 @@ spotx.test.VPAIDAd.prototype.setSkippableButtonOnClick_ = function() {
 spotx.test.VPAIDAd.prototype.interactionButtonOnClick_ = function() {
     console.log("Interaction Button Clicked.");
     this.videoSlot_.pause();
-    interactiveElement = document.createElement('input');
+    interactiveElement = document.createElement('img');
     interactiveElement.id = "interactiveElement"
-    interactiveElement.type = "button";
-    interactiveElement.value = "Interactive Element";
+    interactiveElement.src = 'https://www.spotx.tv/wp-content/uploads/preloader.png'
+    interactiveElement.height = (this.getAdHeight() / 2);
+    interactiveElement.width = (this.getAdWidth() / 2);
     this.slot_.appendChild(interactiveElement);
 
     interactiveElement.addEventListener('click', this.interactionElementHandler_.bind(this));
