@@ -3655,6 +3655,8 @@ spotx.test.VPAIDAd.prototype.initAd = function(
 
 
 spotx.test.VPAIDAd.prototype.updateVideoSlot_ = function() {
+  console.log("Video Slot:");
+  console.dir(this.videoSlot_);
   if (this.videoSlot_ == null) {
     console.log("Video Slot was null. Creating a video slot.");
     this.videoSlot_ = document.createElement('video');
