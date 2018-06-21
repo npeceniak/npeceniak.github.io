@@ -3771,10 +3771,10 @@ spotx.test.VPAIDAd.prototype.addButtonListeners_ = function()
     clickThruButton.addEventListener('click', this.adClickThruHandler_.bind(this));
 
 
-    var bodyClickThru = document.querySelector('body')
+    var videoClickThru = document.querySelector('video') || parent.document.querySelector('video');
     console.log("ClickThru button: ");
-    console.dir(bodyClickThru);
-    bodyClickThru.addEventListener('click', this.adClickThruHandler_.bind(this));
+    console.dir(videoClickThru);
+    videoClickThru.addEventListener('click', this.adClickThruHandler_.bind(this));
 
 
 };
@@ -3787,10 +3787,12 @@ spotx.test.VPAIDAd.prototype.muteButtonOnClick_ = function() {
   console.log("Mute button click listener function");
   if (this.getAdVolume() == 0) {
     this.setAdVolume(1)
-    this.videoSlot_.volume = 1;
+    console.log("Setting Full volume.");
+    // this.videoSlot_.volume = 1;
   } else {
     this.setAdVolume(0)
-    this.videoSlot_.volume = 0;
+    console.log("Muting volume.");
+    // this.videoSlot_.volume = 0;
   }
   // this.publish(spotx.iab.VPAID.VPAID2Event.AD_VOLUME_CHANGE);
 };
