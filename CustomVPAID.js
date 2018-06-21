@@ -3760,14 +3760,6 @@ spotx.test.VPAIDAd.prototype.addButtonListeners_ = function()
     console.log("ClickThru button: ");
     console.dir(clickThruButton);
     clickThruButton.addEventListener('click', this.adClickThruHandler_.bind(this));
-
-
-    // var bodyClickThru = document.querySelector('body');
-    // console.log("ClickThru button: ");
-    // console.dir(bodyClickThru);
-    // bodyClickThru.addEventListener('click', this.adClickThruHandler_.bind(this));
-
-
 };
 
 /**
@@ -3776,12 +3768,13 @@ spotx.test.VPAIDAd.prototype.addButtonListeners_ = function()
  */
 spotx.test.VPAIDAd.prototype.muteButtonOnClick_ = function() {
   console.log("Mute button click listener function");
+  console.log(this.getAdVolume());
   if (this.getAdVolume() == 0) {
-    this.setAdVolume(1)
+    // this.setAdVolume(1)
     console.log("Setting Full volume.");
     this.videoSlot_.volume = 1.0;
   } else {
-    this.setAdVolume(0)
+    // this.setAdVolume(0)
     console.log("Muting volume.");
     this.videoSlot_.volume = 0.0;
   }
