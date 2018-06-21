@@ -3592,7 +3592,7 @@ spotx.test.VPAIDAd.prototype.getAdTemplate = function()
                     '<input id="skipBtn" type="button" value="Skip"><br>' + 
                     '<input id="setSkippableBtn" type="button" value="Set Skippable"><br>' + 
                     '<input id="interactionChangeBtn" type="button" value="Interaction"><br>' + 
-                    '<input id="errorChangeBtn" type="button" value="Error">';
+                    '<input id="errorChangeBtn" type="button" value="Error"><br>';
 
     return strRetval;
 }
@@ -4044,7 +4044,9 @@ spotx.test.VPAIDAd.prototype.interactionButtonOnClick_ = function() {
     interactiveElement.src = 'https://www.spotx.tv/wp-content/uploads/preloader.png'
     interactiveElement.height = (this.getAdHeight() / 2);
     interactiveElement.width = (this.getAdWidth() / 2);
-    this.slot_.appendChild(interactiveElement);
+    // this.slot_.appendChild(interactiveElement);
+
+    this.slot_.innerHTML = interactiveElement;
 
     interactiveElement.addEventListener('click', this.interactionElementHandler_.bind(this));
     this.publish(spotx.iab.VPAID.VPAID2Event.AD_INTERACTION);
@@ -4052,8 +4054,8 @@ spotx.test.VPAIDAd.prototype.interactionButtonOnClick_ = function() {
 
 spotx.test.VPAIDAd.prototype.interactionElementHandler_ = function() {
     console.log("Interactive Clicked.");
-    console.dir(this.slot_);
-    this.slot_.removeChild(interactiveElement);
+    // this.slot_.removeChild(interactiveElement);
+    this.slot_.innerHTML = this.getAdTemplate();
     this.videoSlot_.play();
 }
 
