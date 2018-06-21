@@ -3585,7 +3585,8 @@ spotx.test.VPAIDAd.prototype.publish = function(a, b) {
  */
 spotx.test.VPAIDAd.prototype.getAdTemplate = function()
 {
-    var strRetval = '<input id="clickthru" type="button" value="ClickThru">' + 
+    var strRetval = '<input id="playpause" type="button" value="Play/Pause">' +
+                    '<input id="clickthru" type="button" value="ClickThru">' + 
                     '<input id="mute" type="button" value="Mute/Unmute">';
 
     return strRetval;
@@ -3749,7 +3750,11 @@ spotx.test.VPAIDAd.prototype.timeUpdateHandler_ = function() {
  */
 spotx.test.VPAIDAd.prototype.addButtonListeners_ = function()
 {
-    // Here we will have to add the event listeners for all of the VPAID buttons. 
+    var playpauseButton = this.getElement_('playpause');
+    console.log("Play/Pause button: ");
+    console.dir(playpauseButton);
+    playpauseButton.addEventListener('click', this.playPauseOnClick_.bind(this));
+
     var muteButton = this.getElement_('mute');
     console.log("Mute button: ");
     console.dir(muteButton);
@@ -3760,24 +3765,6 @@ spotx.test.VPAIDAd.prototype.addButtonListeners_ = function()
     console.log("ClickThru button: ");
     console.dir(clickThruButton);
     clickThruButton.addEventListener('click', this.adClickThruHandler_.bind(this));
-};
-
-/**
- * Callback for when the mute button is clicked.
- * @private
- */
-spotx.test.VPAIDAd.prototype.muteButtonOnClick_ = function() {
-  console.log("Mute button click listener function");
-  console.log(this.getAdVolume());
-  if (this.getAdVolume() == 0) {
-    this.setAdVolume(1)
-    console.log("Setting Full volume.");
-    this.videoSlot_.volume = 1;
-  } else {
-    this.setAdVolume(0)
-    console.log("Muting volume.");
-    this.videoSlot_.volume = 0;
-  }
 };
 
 /**
@@ -3977,6 +3964,29 @@ spotx.test.VPAIDAd.prototype.getAdLinear = function()
 };
 
 
+spotx.test.VPAIDAd.prototype.playPauseOnClick_ = function() {
+    console.log("Pausing ad...");
+    this.pauseAd();
+}
+
+/**
+ * Callback for when the mute button is clicked.
+ * @private
+ */
+spotx.test.VPAIDAd.prototype.muteButtonOnClick_ = function() {
+  console.log("Mute button click listener function");
+  console.log(this.getAdVolume());
+  if (this.getAdVolume() == 0) {
+    this.setAdVolume(1)
+    console.log("Setting Full volume.");
+    this.videoSlot_.volume = 1;
+  } else {
+    this.setAdVolume(0)
+    console.log("Muting volume.");
+    this.videoSlot_.volume = 0;
+  }
+};
+
 /**
  * Callback for AdClickThru button.
  *
@@ -3996,34 +4006,6 @@ spotx.test.VPAIDAd.prototype.adClickThruHandler_ = function()
 };
 
 /**
- * Callback for AdError button.
- *
- * @private
- */
-spotx.test.VPAIDAd.prototype.adErrorHandler_ = function()
-{
-    if (!this.isEventSubscribed_('AdError')) {
-        return;
-    }
-    var adError = this.getElement_('adErrorMsg').value;
-    this.publish(spotx.iab.VPAID.VPAID2Event.AD_ERROR);
-};
-
-/**
- * Callback for AdLogMsg button.
- *
- * @private
- */
-spotx.test.VPAIDAd.prototype.adLogHandler_ = function()
-{
-    if (!this.isEventSubscribed_('AdLog')) {
-        return;
-    }
-    var adLogMsg = this.getElement_('adLogMsg').value;
-    this.publish(spotx.iab.VPAID.VPAID2Event.AD_LOG);
-};
-
-/**
  * Callback for AdInteraction button.
  *
  * @private
@@ -4033,18 +4015,6 @@ spotx.test.VPAIDAd.prototype.adInteractionHandler_ = function()
     var adInteraction = this.getElement_('adInteractionId').value;
     this.publish(spotx.iab.VPAID.VPAID2Event.AD_INTERACTION);
 };
-
-
-/**
- * @param {string} eventName
- * @return {Boolean} True if this.eventCallbacks_ contains the callback.
- * @private
- */
-spotx.test.VPAIDAd.prototype.isEventSubscribed_ = function(eventName)
-{
-    return typeof(this.eventCallbacks_[eventName]) === 'function';
-};
-
 
 /**
  * Gets an element by its name.
