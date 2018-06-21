@@ -3587,7 +3587,8 @@ spotx.test.VPAIDAd.prototype.getAdTemplate = function()
 {
     var strRetval = '<input id="pauseBtn" type="button" value="Pause">' +
                     '<input id="clickthruBtn" type="button" value="ClickThru">' + 
-                    '<input id="muteBtn" type="button" value="Mute/Unmute">';
+                    '<input id="muteBtn" type="button" value="Mute">' + 
+                    '<input id="unmuteBtn" type="button" value="Unmute">';
 
     return strRetval;
 }
@@ -3751,13 +3752,17 @@ spotx.test.VPAIDAd.prototype.timeUpdateHandler_ = function() {
 spotx.test.VPAIDAd.prototype.addButtonListeners_ = function()
 {
     var pauseButton = this.getElement_('pauseBtn');
-    pauseButton.addEventListener('click', this.pauseOnClick_.bind(this));
-
-    var muteButton = this.getElement_('muteBtn');
-    muteButton.addEventListener('click', this.muteButtonOnClick_());
+    pauseButton.addEventListener('click', this.pauseAd()); //this.pauseOnClick_.bind(this));
 
     var clickThruButton = this.getElement_('clickthruBtn');
     clickThruButton.addEventListener('click', this.adClickThruHandler_.bind(this));
+
+    var muteButton = this.getElement_('muteBtn');
+    muteButton.addEventListener('click', this.setAdVolume(0));
+
+    var unmuteButton = this.getElement_('unmuteBtn');
+    unmuteButton.addEventListener('click', this.setAdVolume(0.9));
+
 };
 
 /**
