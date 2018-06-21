@@ -3656,12 +3656,10 @@ spotx.test.VPAIDAd.prototype.initAd = function(
 
 spotx.test.VPAIDAd.prototype.updateVideoSlot_ = function() {
   if (this.videoSlot_ == null) {
+    console.log("Video Slot was null. Creating a video slot.");
     this.videoSlot_ = document.createElement('video');
     this.slot_.appendChild(this.videoSlot_);
   }
-  // TODO right now the sdk is sending in the wrong size on init.
-  // there should be no need to change element sizes from the start.
-  //this.updateVideoPlayerSize_();
   var foundSource = false;
   // We can pass the video and mimetype in via parameters if this line is used.
   // var videos = this.parameters_.videos || [];
