@@ -4060,28 +4060,14 @@ spotx.test.VPAIDAd.prototype.log = function(message)
 spotx.test.VPAIDAd.prototype.adClickThruHandler_ = function()
 {
     console.log("ClickThru button click listener function");
-    // if (!this.isEventSubscribed_('AdClickThru')) {
-    //     this.log('Error: AdClickThru function callback not subscribed.');
-    //     return;
-    // }
-    // var clickThruUrl = this.getElement_('clickThruUrl').value;
-    // var clickThruId = this.getElement_('clickThruId').value;
-    // var clickThruPlayerHandles =
-    //     this.getElement_('clickThruPlayerHandels').value;
 
     var clickThruUrl = 'https://spotx.tv';
     var clickThruId = '1234';
     var clickThruPlayerHandles = true;
     console.log('AdClickThru(' + clickThruUrl + ',' +
         clickThruId + ',' + clickThruPlayerHandles + ')');
-    // this.eventCallbacks_['AdClickThru'](
-    //     clickThruUrl,
-    //     clickThruId,
-    //     clickThruPlayerHandles);
 
-    dispatchEvent(new Event(spotx.iab.VPAID.VPAID2Event.AD_CLICKED, clickThruUrl, clickThruId, clickThruPlayerHandles));
-
-
+    this.publish(spotx.iab.VPAID.VPAID2Event.AD_CLICKED);
 };
 
 /**
