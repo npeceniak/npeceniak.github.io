@@ -3740,7 +3740,7 @@ spotx.test.VPAIDAd.prototype.timeUpdateHandler_ = function() {
   }
   if (this.attributes_['duration'] != this.videoSlot_.duration) {
     this.attributes_['duration'] = this.videoSlot_.duration;
-    this.publish(spotx.iab.VPAID.VPAID2Event.AD_DURATION_CHANGE);
+    // this.publish(spotx.iab.VPAID.VPAID2Event.AD_DURATION_CHANGE);
   }
 };
 
