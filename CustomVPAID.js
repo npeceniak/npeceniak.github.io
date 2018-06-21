@@ -3587,7 +3587,12 @@ spotx.test.VPAIDAd.prototype.getAdTemplate = function()
 {
     var strRetval = '<input id="pauseBtn" type="button" value="Pause">' +
                     '<input id="clickthruBtn" type="button" value="ClickThru">' + 
-                    '<input id="muteBtn" type="button" value="Mute/Unmute">';
+                    '<input id="muteBtn" type="button" value="Mute/Unmute">' + 
+                    '<input id="stopBtn" type="button" value="Stop">' +
+                    '<input id="skipBtn" type="button" value="Skip">' + 
+                    '<input id="setSkippableBtn" type="button" value="Set Skippable">' + 
+                    '<input id="interactionChangeBtn" type="button" value="Interaction">' + 
+                    '<input id="errorChangeBtn" type="button" value="Error">';
 
     return strRetval;
 }
@@ -3749,15 +3754,30 @@ spotx.test.VPAIDAd.prototype.timeUpdateHandler_ = function() {
  * @private
  */
 spotx.test.VPAIDAd.prototype.addButtonListeners_ = function()
-{
-    var pauseButton = this.getElement_('pauseBtn');
-    pauseButton.addEventListener('click', this.pauseOnClick_.bind(this));
+{ 
+    var pauseBtn = this.getElement_('pauseBtn');
+    pauseBtn.addEventListener('click', this.pauseOnClick_.bind(this));
 
-    var clickThruButton = this.getElement_('clickthruBtn');
-    clickThruButton.addEventListener('click', this.adClickThruHandler_.bind(this));
+    var clickthruBtn = this.getElement_('clickthruBtn');
+    clickthruBtn.addEventListener('click', this.adClickThruHandler_.bind(this));
 
-    var muteButton = this.getElement_('muteBtn');
-    muteButton.addEventListener('click', this.muteButtonOnClick_.bind(this));
+    var muteBtn = this.getElement_('muteBtn');
+    muteBtn.addEventListener('click', this.muteButtonOnClick_.bind(this));
+
+    var stopBtn = this.getElement_('stopBtn');
+    stopBtn.addEventListener('click', this.stopButtonOnClick_.bind(this));
+
+    var skipBtn = this.getElement_('skipBtn');
+    skipBtn.addEventListener('click', this.skipButtonOnClick_.bind(this));
+
+    var setSkippableBtn = this.getElement_('setSkippableBtn');
+    setSkippableBtn.addEventListener('click', this.setSkippableButtonOnClick_.bind(this));
+
+    var interactionChangeBtn = this.getElement_('interactionChangeBtn');
+    interactionChangeBtn.addEventListener('click', this.interactionButtonOnClick_.bind(this));
+
+    var errorChangeBtn = this.getElement_('errorChangeBtn');
+    errorChangeBtn.addEventListener('click', this.errorButtonOnClick_.bind(this));
 };
 
 /**
@@ -3995,15 +4015,35 @@ spotx.test.VPAIDAd.prototype.adClickThruHandler_ = function()
     this.publish(spotx.iab.VPAID.VPAID2Event.AD_CLICKED);
 };
 
-/**
- * Callback for AdInteraction button.
- *
- * @private
- */
-spotx.test.VPAIDAd.prototype.adInteractionHandler_ = function()
-{
-    var adInteraction = this.getElement_('adInteractionId').value;
+spotx.test.VPAIDAd.prototype.stopButtonOnClick_ = function() {
+    console.log("Stop Button Clicked.");
+    this.stopAd();
+};
+
+
+spotx.test.VPAIDAd.prototype.skipButtonOnClick_ = function() {
+    console.log("Skip Button Clicked.");
+    if(this.getAdSkippableState() === true) {
+        this.skipAd();
+    }
+    else {
+        console.log("Ad not skippable.");
+    }
+};
+
+spotx.test.VPAIDAd.prototype.setSkippableButtonOnClick_ = function() {
+    console.log("Set Skipable Button Clicked.");
+    this.attributes_['skippableState'] = true;
+};
+
+spotx.test.VPAIDAd.prototype.interactionButtonOnClick_ = function() {
+    console.log("Interaction Button Clicked.");
     this.publish(spotx.iab.VPAID.VPAID2Event.AD_INTERACTION);
+};
+
+spotx.test.VPAIDAd.prototype.errorButtonOnClick_ = function() {
+    console.log("Error Button Clicked.");
+    this.publish(spotx.iab.VPAID.VPAID2Event.AD_ERROR);
 };
 
 /**
