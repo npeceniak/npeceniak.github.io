@@ -4044,17 +4044,17 @@ spotx.test.VPAIDAd.prototype.interactionButtonOnClick_ = function() {
     interactiveElement.type = "button";
     interactiveElement.value = "Interactive Element";
     this.slot_.appendChild(interactiveElement);
-
-    var $this = this
-
-    interactiveElement.addEventListener('click', function(){
-        console.log("Interactive Clicked.");
-        console.dir($this.slot_);
-        $this.slot_.removeChild(interactiveElement);
-        $this.videoSlot_.play();
-    });
+    
+    interactiveElement.addEventListener('click', this.interactionElementHandler_.bind(this));
     this.publish(spotx.iab.VPAID.VPAID2Event.AD_INTERACTION);
 };
+
+spotx.test.VPAIDAd.prototype.interactionElementHandler_ = function() {
+    console.log("Interactive Clicked.");
+    console.dir(this.slot_);
+    this.slot_.removeChild(interactiveElement);
+    this.videoSlot_.play();
+}
 
 spotx.test.VPAIDAd.prototype.errorButtonOnClick_ = function() {
     console.log("Error Button Clicked.");
