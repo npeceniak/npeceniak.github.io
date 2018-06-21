@@ -4044,7 +4044,7 @@ spotx.test.VPAIDAd.prototype.interactionButtonOnClick_ = function() {
         imageHeight = (this.getAdHeight() / 2),
         imageWidth = (this.getAdWidth() / 2),
         interactiveImage = '<div align="center" style="background-color:green">' +
-                        `<img id="${imageId}" src="${imageSrc}" height="${imageHeight} width="${imageWidth}><br>` + 
+                        `<img id="${imageId}" src="${imageSrc}" height="${imageHeight} width="${imageWidth}"><br>` + 
                         '<label>Click Image to resume ad.</label></div>';
 
     this.slot_.innerHTML = interactiveImage;
