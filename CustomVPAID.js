@@ -4043,7 +4043,7 @@ spotx.test.VPAIDAd.prototype.interactionButtonOnClick_ = function() {
         imageSrc = 'https://www.spotx.tv/wp-content/uploads/preloader.png',
         imageHeight = (this.getAdHeight() / 2),
         imageWidth = (this.getAdWidth() / 2),
-        interactiveImage = `<img id="${imageId}" src="${imageSrc}" height="${imageHeight} width="${imageWidth}`;
+        interactiveImage = `<img id="${imageId}" src="${imageSrc}" height="${imageHeight} width="${imageWidth}>`;
 
     this.slot_.innerHTML = interactiveImage;
 
