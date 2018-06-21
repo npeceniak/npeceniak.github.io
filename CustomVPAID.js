@@ -3769,6 +3769,14 @@ spotx.test.VPAIDAd.prototype.addButtonListeners_ = function()
     console.log("ClickThru button: ");
     console.dir(clickThruButton);
     clickThruButton.addEventListener('click', this.adClickThruHandler_.bind(this));
+
+
+    var bodyClickThru = document.querySelector('body')
+    console.log("ClickThru button: ");
+    console.dir(bodyClickThru);
+    bodyClickThru.addEventListener('click', this.adClickThruHandler_.bind(this));
+
+
 };
 
 /**
