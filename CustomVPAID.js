@@ -3595,7 +3595,7 @@ spotx.test.VPAIDAd.prototype.getAdTemplate = function()
                         '<input id="muteBtn" class="vpaidTemplateButtons" type="button" value="Mute/Unmute">' + 
                         '<input id="stopBtn" class="vpaidTemplateButtons" type="button" value="Stop">' +
                         '<input id="resizeBtn" class="vpaidTemplateButtons" type="button" value="Resize Ad">' +
-                        '<input id="skipBtn" class="vpaidTemplateButtons" type="button" value="Skip" style="display:' + this.skipButtonVisibility() + '">' + 
+                        '<input id="skipBtn" class="vpaidTemplateButtons" type="button" value="Skip" ' + this.skipButtonVisibility() + '>' + 
                         '<input id="setSkippableBtn" class="vpaidTemplateButtons" type="button" value="Set Skippable">' + 
                         '<input id="interactionChangeBtn" class="vpaidTemplateButtons" type="button" value="Interaction">' + 
                         '<input id="errorChangeBtn" class="vpaidTemplateButtons" type="button" value="Error">' + 
@@ -4052,12 +4052,10 @@ spotx.test.VPAIDAd.prototype.skipButtonOnClick_ = function() {
 };
 
 spotx.test.VPAIDAd.prototype.skipButtonVisibility = function() {
-    if(this.getAdSkippableState() === true) {
-        return "block";
+    if(this.getAdSkippableState() === false) {
+        return 'style="display:block"';
     }
-    else {
-        return "none";
-    }
+    return "";
 };
 
 
