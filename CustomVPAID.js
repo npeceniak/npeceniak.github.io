@@ -4050,9 +4050,9 @@ spotx.test.VPAIDAd.prototype.skipButtonOnClick_ = function() {
 
 spotx.test.VPAIDAd.prototype.skipButtonVisibility = function() {
     if(this.getAdSkippableState() === false) {
-        return 'style="display:block"';
+        return 'style="display:none"';
     }
-    return "";
+    return '';
 };
 
 
