@@ -3587,7 +3587,7 @@ spotx.test.VPAIDAd.prototype.getAdTemplate = function()
 {
 
 
-    var strRetval = '<link rel="stylesheet" type="text/css" href="">'
+    var strRetval = '<link rel="stylesheet" type="text/css" href="https://npeceniak.github.io/vpaidButtons.css">' +
                     '<input id="playBtn" class="vpaidTemplateButtons" type="button" value="Play"><br>' +
                     '<input id="pauseBtn" class="vpaidTemplateButtons" type="button" value="Pause"><br>' +
                     '<input id="clickthruBtn" class="vpaidTemplateButtons" type="button" value="ClickThru"><br>' + 
