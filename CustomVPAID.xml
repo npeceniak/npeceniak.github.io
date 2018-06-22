@@ -3,13 +3,14 @@
         <InLine>
             <AdTitle><![CDATA[ Spotx Controlled VPAID ]]></AdTitle>
             <Description><![CDATA[ Spotx Controlled VPAID ]]></Description>
-            <VideoClicks>
-                <ClickThrough id="123">http://spotx.tv</ClickThrough>
-            </VideoClicks>
             <Creatives>
                 <Creative sequence="1">
                     <Linear>
                         <Duration>00:00:15</Duration>
+                          <VideoClicks>
+                            <ClickThrough id="123">http://spotx.tv</ClickThrough>
+                            <ClickTracking id="123">/beacon?beacon_type=click</ClickTracking>
+                        </VideoClicks>
                         <MediaFiles>
                             <MediaFile apiFramework="VPAID" type="application/javascript">
                             https://npeceniak.github.io/CustomVPAID.js
