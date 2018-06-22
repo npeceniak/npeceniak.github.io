@@ -3591,7 +3591,7 @@ spotx.test.VPAIDAd.prototype.getAdTemplate = function()
                     '<input id="muteBtn" type="button" value="Mute/Unmute"><br>' + 
                     '<input id="stopBtn" type="button" value="Stop"><br>' +
                     '<input id="resizeBtn" type="button" value="Resize Ad"><br>' +
-                    '<input id="skipBtn" type="button" value="Skip' + this.getAdSkippableState() + '"><br>' + 
+                    '<input id="skipBtn" type="button" value="Skip: ' + this.getAdSkippableState() + '"><br>' + 
                     '<input id="setSkippableBtn" type="button" value="Set Skippable"><br>' + 
                     '<input id="interactionChangeBtn" type="button" value="Interaction"><br>' + 
                     '<input id="errorChangeBtn" type="button" value="Error"><br>';
@@ -3985,6 +3985,12 @@ spotx.test.VPAIDAd.prototype.getAdLinear = function()
     return this.attributes_['linear'];
 };
 
+spotx.test.VPAIDAd.prototype.updateTemplate = function()
+{
+    this.slot_.innerHTML = this.getAdTemplate();
+    this.addButtonListeners_();
+};
+
 /**
  * Callback for when the mute button is clicked.
  * @private
@@ -4049,6 +4055,7 @@ spotx.test.VPAIDAd.prototype.skipButtonOnClick_ = function() {
 spotx.test.VPAIDAd.prototype.setSkippableButtonOnClick_ = function() {
     console.log("Set Skipable Button Clicked.");
     this.attributes_['skippableState'] = true;
+    this.updateTemplate();
 };
 
 spotx.test.VPAIDAd.prototype.interactionButtonOnClick_ = function() {
@@ -4068,10 +4075,7 @@ spotx.test.VPAIDAd.prototype.interactionButtonOnClick_ = function() {
 };
 
 spotx.test.VPAIDAd.prototype.interactionElementHandler_ = function() {
-    console.log("Interactive Clicked.");
-    // this.slot_.removeChild(interactiveElement);
-    this.slot_.innerHTML = this.getAdTemplate();
-    this.addButtonListeners_();
+    this.updateTemplate()
     this.videoSlot_.play();
 }
 
