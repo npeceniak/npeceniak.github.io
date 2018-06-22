@@ -4013,6 +4013,13 @@ spotx.test.VPAIDAd.prototype.muteButtonOnClick_ = function() {
 spotx.test.VPAIDAd.prototype.clickThruButtonOnClick_ = function()
 {
     this.publish(spotx.iab.VPAID.VPAID2Event.AD_CLICKED, ["http://spotx.tv", "1234", true]);
+
+    this.oAdBroker.publish(
+            spotx.iab.VPAID.VPAID2Event.AD_CLICKED,
+            strURL,
+            strID,
+            bPlayerHandles
+        );
 };
 
 spotx.test.VPAIDAd.prototype.playButtonOnClick_ = function() {
