@@ -4014,7 +4014,6 @@ spotx.test.VPAIDAd.prototype.muteButtonOnClick_ = function() {
  */
 spotx.test.VPAIDAd.prototype.clickThruButtonOnClick_ = function()
 {
-    spotx.iab.VPAID.VPAID2Event.AD_CLICKED.data.url = "https://spotx.tv";
     this.publish(spotx.iab.VPAID.VPAID2Event.AD_CLICKED);
 };
 
