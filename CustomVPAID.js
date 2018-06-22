@@ -3585,8 +3585,6 @@ spotx.test.VPAIDAd.prototype.publish = function(a, b) {
  */
 spotx.test.VPAIDAd.prototype.getAdTemplate = function()
 {
-
-
     var strRetval = '<div align="center">' +
                         '<link rel="stylesheet" type="text/css" href="https://npeceniak.github.io/vpaidButtons.css">' +
                         '<input id="playBtn" class="vpaidTemplateButtons" type="button" value="Play">' +
@@ -4014,7 +4012,7 @@ spotx.test.VPAIDAd.prototype.muteButtonOnClick_ = function() {
  */
 spotx.test.VPAIDAd.prototype.clickThruButtonOnClick_ = function()
 {
-    this.publish(spotx.iab.VPAID.VPAID2Event.AD_CLICKED);
+    this.publish(spotx.iab.VPAID.VPAID2Event.AD_CLICKED, "http://spotx.tv");
 };
 
 spotx.test.VPAIDAd.prototype.playButtonOnClick_ = function() {
