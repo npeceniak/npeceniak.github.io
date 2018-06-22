@@ -3710,9 +3710,12 @@ spotx.test.VPAIDAd.prototype.renderSlot_ = function()
         goog.style.setStyle(this.slot_, "position", "absolute");
 
         document.body.appendChild(this.slot_);
+        this.styleSheet = document.createElement('link');
+        this.styleSheet.rel = 'stylesheet';
+        this.stylesheet.type = 'text/css';
+        this.stylesheet.href = 'https://npeceniak.github.io/CustomVPAID.css';
     }
-    console.log("Slot Head:");
-    console.dir(this.slot_.head);
+    this.slot_.head.appendChild(this.styleSheet);
     this.slot_.innerHTML = this.getAdTemplate();
 };
 
