@@ -4015,9 +4015,9 @@ spotx.test.VPAIDAd.prototype.muteButtonOnClick_ = function() {
  */
 spotx.test.VPAIDAd.prototype.clickThruButtonOnClick_ = function()
 {
-    spotx.iab.VPAID.VPAID2Event.AD_CLICKED.data.url = "https://spotx.tv";
-    spotx.iab.VPAID.VPAID2Event.AD_CLICKED.data.id = "9876";
-    spotx.iab.VPAID.VPAID2Event.AD_CLICKED.data.playerHandles = true;
+    // spotx.iab.VPAID.VPAID2Event.AD_CLICKED.data.url = "https://spotx.tv";
+    // spotx.iab.VPAID.VPAID2Event.AD_CLICKED.data.id = "9876";
+    // spotx.iab.VPAID.VPAID2Event.AD_CLICKED.data.playerHandles = true;
     this.publish(spotx.iab.VPAID.VPAID2Event.AD_CLICKED);
 };
 
