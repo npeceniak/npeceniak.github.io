@@ -3831,8 +3831,7 @@ spotx.test.VPAIDAd.prototype.setAdVolume = function(value)
 {
     this.attributes_['volume'] = value;
     this.videoSlot_.volume = value;
-    // this.publish(spotx.iab.VPAID.VPAID2Event.AD_VOLUME_CHANGE);
-    this.publish('AdVolumeChange');
+    this.publish(spotx.iab.VPAID.VPAID2Event.AD_VOLUME_CHANGE);
 };
 
 /**
@@ -4015,9 +4014,7 @@ spotx.test.VPAIDAd.prototype.muteButtonOnClick_ = function() {
  */
 spotx.test.VPAIDAd.prototype.clickThruButtonOnClick_ = function()
 {
-    // spotx.iab.VPAID.VPAID2Event.AD_CLICKED.data.url = "https://spotx.tv";
-    // spotx.iab.VPAID.VPAID2Event.AD_CLICKED.data.id = "9876";
-    // spotx.iab.VPAID.VPAID2Event.AD_CLICKED.data.playerHandles = true;
+    spotx.iab.VPAID.VPAID2Event.AD_CLICKED.data.url = "https://spotx.tv";
     this.publish(spotx.iab.VPAID.VPAID2Event.AD_CLICKED);
 };
 
