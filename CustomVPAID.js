@@ -3671,6 +3671,9 @@ spotx.test.VPAIDAd.prototype.updateVideoSlot_ = function() {
   if (this.videoSlot_ === null) {
     console.log("Video Slot was null. Creating a video slot.");
     this.videoSlot_ = document.createElement('video');
+    this.videoSlot_.width = this.getAdWidth();
+    this.videoSlot_.height = this.getAdHeight();
+    this.videoSlot_.position = "absolute";
     this.slot_.appendChild(this.videoSlot_);
   }
   var foundSource = false;
