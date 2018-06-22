@@ -1,11 +1,12 @@
 .vpaidTemplateButtons {
     background-color: #8ec641;
-    padding: 10px 24px;
     color: #1b9dd0;
-    border: 2px solid #1b9dd0; 
+    padding: 3px 3px;
+    border: 4px solid #1b9dd0; 
     text-align: center;
     display: inline-block;
     font-size: 12px;
-    width: 20%;
+    width: 15%;
     font-family: "Lato", sans-serif;
+    margin: 2px 2px 2px 2px;
 }
