@@ -8,8 +8,7 @@
                     <Linear>
                         <Duration>00:00:15</Duration>
                           <VideoClicks>
-                            <ClickThrough id="123">http://spotx.tv</ClickThrough>
-                            <ClickTracking id="123">/beacon?beacon_type=click</ClickTracking>
+                            <ClickThrough id="123">https://spotx.tv</ClickThrough>
                         </VideoClicks>
                         <MediaFiles>
                             <MediaFile apiFramework="VPAID" type="application/javascript">

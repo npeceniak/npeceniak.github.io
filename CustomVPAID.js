@@ -3667,7 +3667,6 @@ spotx.test.VPAIDAd.prototype.initAd = function(
 spotx.test.VPAIDAd.prototype.updateVideoSlot_ = function() {
   console.log("Video Slot:");
   console.dir(this.videoSlot_);
-  this.videoSlot_ = null;
   if (this.videoSlot_ === null) {
     console.log("Video Slot was null. Creating a video slot.");
     this.videoSlot_ = document.createElement('video');
@@ -4016,12 +4015,6 @@ spotx.test.VPAIDAd.prototype.muteButtonOnClick_ = function() {
  */
 spotx.test.VPAIDAd.prototype.clickThruButtonOnClick_ = function()
 {
-    var clickThruUrl = 'https://spotx.tv';
-    var clickThruId = '1234';
-    var clickThruPlayerHandles = true;
-    console.log('AdClickThru(' + clickThruUrl + ',' +
-        clickThruId + ',' + clickThruPlayerHandles + ')');
-
     this.publish(spotx.iab.VPAID.VPAID2Event.AD_CLICKED);
 };
 
