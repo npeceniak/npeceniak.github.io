@@ -8,7 +8,7 @@
                     <Linear>
                         <Duration>00:00:15</Duration>
                           <VideoClicks>
-                            <ClickThrough id="123" playerHandles="false">https://spotx.tv</ClickThrough>
+                            <ClickThrough id="123" playerHandles="true">https://spotx.tv</ClickThrough>
                         </VideoClicks>
                         <MediaFiles>
                             <MediaFile apiFramework="VPAID" type="application/javascript">
