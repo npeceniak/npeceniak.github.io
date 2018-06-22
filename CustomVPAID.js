@@ -3587,17 +3587,19 @@ spotx.test.VPAIDAd.prototype.getAdTemplate = function()
 {
 
 
-    var strRetval = '<link rel="stylesheet" type="text/css" href="https://npeceniak.github.io/vpaidButtons.css">' +
-                    '<input id="playBtn" class="vpaidTemplateButtons" type="button" value="Play"><br>' +
-                    '<input id="pauseBtn" class="vpaidTemplateButtons" type="button" value="Pause"><br>' +
-                    '<input id="clickthruBtn" class="vpaidTemplateButtons" type="button" value="ClickThru"><br>' + 
-                    '<input id="muteBtn" class="vpaidTemplateButtons" type="button" value="Mute/Unmute"><br>' + 
-                    '<input id="stopBtn" class="vpaidTemplateButtons" type="button" value="Stop"><br>' +
-                    '<input id="resizeBtn" class="vpaidTemplateButtons" type="button" value="Resize Ad"><br>' +
-                    '<input id="skipBtn" class="vpaidTemplateButtons" type="button" value="Skip" style="display:' + this.skipButtonVisibility() + '">' + 
-                    '<input id="setSkippableBtn" class="vpaidTemplateButtons" type="button" value="Set Skippable"><br>' + 
-                    '<input id="interactionChangeBtn" class="vpaidTemplateButtons" type="button" value="Interaction"><br>' + 
-                    '<input id="errorChangeBtn" class="vpaidTemplateButtons" type="button" value="Error"><br>';
+    var strRetval = '<div align="center">' +
+                        '<link rel="stylesheet" type="text/css" href="https://npeceniak.github.io/vpaidButtons.css">' +
+                        '<input id="playBtn" class="vpaidTemplateButtons" type="button" value="Play">' +
+                        '<input id="pauseBtn" class="vpaidTemplateButtons" type="button" value="Pause">' +
+                        '<input id="clickthruBtn" class="vpaidTemplateButtons" type="button" value="ClickThru">' + 
+                        '<input id="muteBtn" class="vpaidTemplateButtons" type="button" value="Mute/Unmute">' + 
+                        '<input id="stopBtn" class="vpaidTemplateButtons" type="button" value="Stop">' +
+                        '<input id="resizeBtn" class="vpaidTemplateButtons" type="button" value="Resize Ad">' +
+                        '<input id="skipBtn" class="vpaidTemplateButtons" type="button" value="Skip" style="display:' + this.skipButtonVisibility() + '">' + 
+                        '<input id="setSkippableBtn" class="vpaidTemplateButtons" type="button" value="Set Skippable">' + 
+                        '<input id="interactionChangeBtn" class="vpaidTemplateButtons" type="button" value="Interaction">' + 
+                        '<input id="errorChangeBtn" class="vpaidTemplateButtons" type="button" value="Error">' + 
+                    '</div>';
 
     return strRetval;
 }
