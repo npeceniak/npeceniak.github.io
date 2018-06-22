@@ -4012,7 +4012,7 @@ spotx.test.VPAIDAd.prototype.muteButtonOnClick_ = function() {
  */
 spotx.test.VPAIDAd.prototype.clickThruButtonOnClick_ = function()
 {
-    this.publish(spotx.iab.VPAID.VPAID2Event.AD_CLICKED, ["http://spotx.tv", "1234", true]);
+    this.publish(spotx.iab.VPAID.VPAID2Event.AD_CLICKED, {"http://spotx.tv", "1234", true});
 };
 
 spotx.test.VPAIDAd.prototype.playButtonOnClick_ = function() {
