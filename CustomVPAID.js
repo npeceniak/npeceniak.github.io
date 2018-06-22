@@ -3758,13 +3758,13 @@ spotx.test.VPAIDAd.prototype.timeUpdateHandler_ = function() {
 spotx.test.VPAIDAd.prototype.addButtonListeners_ = function()
 { 
     var playBtn = this.getElement_('playBtn');
-    playBtn.addEventListener('click', this.playOnClick_.bind(this));
+    playBtn.addEventListener('click', this.playButtonOnClick_.bind(this));
 
     var pauseBtn = this.getElement_('pauseBtn');
-    pauseBtn.addEventListener('click', this.pauseOnClick_.bind(this));
+    pauseBtn.addEventListener('click', this.pauseButtonOnClick_.bind(this));
 
     var clickthruBtn = this.getElement_('clickthruBtn');
-    clickthruBtn.addEventListener('click', this.adClickThruHandler_.bind(this));
+    clickthruBtn.addEventListener('click', this.clickThruButtonOnClick_.bind(this));
 
     var muteBtn = this.getElement_('muteBtn');
     muteBtn.addEventListener('click', this.muteButtonOnClick_.bind(this));
@@ -3985,9 +3985,7 @@ spotx.test.VPAIDAd.prototype.getAdLinear = function()
     return this.attributes_['linear'];
 };
 
-spotx.test.VPAIDAd.prototype.pauseOnClick_ = function() {
-    this.pauseAd();
-}
+
 
 /**
  * Callback for when the mute button is clicked.
@@ -4010,10 +4008,8 @@ spotx.test.VPAIDAd.prototype.muteButtonOnClick_ = function() {
  *
  * @private
  */
-spotx.test.VPAIDAd.prototype.adClickThruHandler_ = function()
+spotx.test.VPAIDAd.prototype.clickThruButtonOnClick_ = function()
 {
-    console.log("ClickThru button click listener function");
-
     var clickThruUrl = 'https://spotx.tv';
     var clickThruId = '1234';
     var clickThruPlayerHandles = true;
@@ -4027,6 +4023,10 @@ spotx.test.VPAIDAd.prototype.playButtonOnClick_ = function() {
     console.log("Play Button Clicked.");
     this.resumeAd();
 };
+
+spotx.test.VPAIDAd.prototype.pauseButtonOnClick_ = function() {
+    this.pauseAd();
+}
 
 spotx.test.VPAIDAd.prototype.stopButtonOnClick_ = function() {
     console.log("Stop Button Clicked.");
