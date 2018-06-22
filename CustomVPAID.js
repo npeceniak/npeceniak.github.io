@@ -3774,7 +3774,7 @@ spotx.test.VPAIDAd.prototype.addButtonListeners_ = function()
     clickthruBtn.addEventListener('click', this.clickThruButtonOnClick_.bind(this));
 
     var muteBtn = this.getElement_('muteBtn');
-    muteBtn.addEventListener('click', this.muteButtonOnClick_.bind(this));
+    muteBtn.addEventListener('click', this.muteButtonOnClick_());
 
     var stopBtn = this.getElement_('stopBtn');
     stopBtn.addEventListener('click', this.stopButtonOnClick_.bind(this));
@@ -4000,11 +4000,13 @@ spotx.test.VPAIDAd.prototype.updateTemplate = function()
  * @private
  */
 spotx.test.VPAIDAd.prototype.muteButtonOnClick_ = function() {
-  if (this.getAdVolume() === 0) {
-    this.setAdVolume(1.0)
-  } else {
-    this.setAdVolume(0.0)
-  }
+    console.log("this in mute button on click");
+    console.dir(this);
+    if (this.getAdVolume() === 0) {
+        this.setAdVolume(1.0)
+    } else {
+        this.setAdVolume(0.0)
+    }
 };
 
 /**
