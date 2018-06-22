@@ -4015,6 +4015,9 @@ spotx.test.VPAIDAd.prototype.muteButtonOnClick_ = function() {
  */
 spotx.test.VPAIDAd.prototype.clickThruButtonOnClick_ = function()
 {
+    spotx.iab.VPAID.VPAID2Event.AD_CLICKED.data.url = "https://spotx.tv";
+    spotx.iab.VPAID.VPAID2Event.AD_CLICKED.data.id = "9876";
+    spotx.iab.VPAID.VPAID2Event.AD_CLICKED.data.playerHandles = true;
     this.publish(spotx.iab.VPAID.VPAID2Event.AD_CLICKED);
 };
 
@@ -4042,13 +4045,11 @@ spotx.test.VPAIDAd.prototype.skipButtonVisibility = function() {
 };
 
 spotx.test.VPAIDAd.prototype.setSkippableButtonOnClick_ = function() {
-    console.log("Set Skipable Button Clicked.");
     this.attributes_['skippableState'] = true;
     this.updateTemplate();
 };
 
 spotx.test.VPAIDAd.prototype.interactionButtonOnClick_ = function() {
-    console.log("Interaction Button Clicked.");
     this.videoSlot_.pause();
     var imageId = "interactiveElement",
         imageSrc = 'https://www.spotx.tv/wp-content/uploads/preloader.png',
@@ -4069,7 +4070,6 @@ spotx.test.VPAIDAd.prototype.interactionElementHandler_ = function() {
 }
 
 spotx.test.VPAIDAd.prototype.errorButtonOnClick_ = function() {
-    console.log("Error Button Clicked.");
     this.publish(spotx.iab.VPAID.VPAID2Event.AD_ERROR);
 };
 
