@@ -6,9 +6,9 @@
             <Creatives>
                 <Creative sequence="1">
                     <Linear>
-                        <Duration>00:00:15</Duration>
+                        <Duration>00:00:18</Duration>
                           <VideoClicks>
-                            <ClickThrough id="123" playerHandles="true">https://spotx.tv</ClickThrough>
+                            <ClickThrough id="9876">https://eighties-test-harnesses.lod.spotx.tv/</ClickThrough>
                         </VideoClicks>
                         <MediaFiles>
                             <MediaFile apiFramework="VPAID" type="application/javascript">
