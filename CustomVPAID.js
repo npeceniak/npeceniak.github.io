@@ -3832,6 +3832,7 @@ spotx.test.VPAIDAd.prototype.setAdVolume = function(value)
 {
     console.log("Setting Volume to: " + value);
     this.attributes_['volume'] = value;
+    this.videoSlot_.volume = value;
     this.publish(spotx.iab.VPAID.VPAID2Event.AD_VOLUME_CHANGE);
 };
 
@@ -4001,14 +4002,10 @@ spotx.test.VPAIDAd.prototype.updateTemplate = function()
  * @private
  */
 spotx.test.VPAIDAd.prototype.muteButtonOnClick_ = function() {
-  if (this.getAdVolume() == 0) {
-    this.setAdVolume(1)
-    console.log("Setting Full volume.");
-    this.videoSlot_.volume = this.getAdVolume();
+  if (this.getAdVolume() === 0) {
+    this.setAdVolume(1.0)
   } else {
-    this.setAdVolume(0)
-    console.log("Muting volume.");
-    this.videoSlot_.volume = this.getAdVolume();
+    this.setAdVolume(0.0)
   }
 };
 
