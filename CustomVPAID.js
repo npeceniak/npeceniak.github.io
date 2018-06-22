@@ -4041,11 +4041,9 @@ spotx.test.VPAIDAd.prototype.interactionButtonOnClick_ = function() {
     this.videoSlot_.pause();
     var imageId = "interactiveElement",
         imageSrc = 'https://www.spotx.tv/wp-content/uploads/preloader.png',
-        imageHeight = (this.getAdHeight() / 2),
-        imageWidth = (this.getAdWidth() / 2),
-        interactiveImage = '<div align="center" style="background-color:green">' +
-                        `<img id="${imageId}" src="${imageSrc}" height="${imageHeight}" width="${imageWidth}"><br>` + 
-                        '<label>Click Image to resume ad.</label></div>';
+        imageHeight = this.getAdHeight(),
+        imageWidth = this.getAdWidth(),
+        interactiveImage = '<img id="' + imageId + '" src="' + imageSrc + '" height="' + imageHeight + '" width="' + imageWidth + '">';
 
     this.slot_.innerHTML = interactiveImage;
 
