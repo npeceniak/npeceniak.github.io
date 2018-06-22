@@ -3594,7 +3594,6 @@ spotx.test.VPAIDAd.prototype.getAdTemplate = function()
                         '<input id="clickthruBtn" class="vpaidTemplateButtons" type="button" value="ClickThru">' + 
                         '<input id="muteBtn" class="vpaidTemplateButtons" type="button" value="Mute/Unmute">' + 
                         '<input id="stopBtn" class="vpaidTemplateButtons" type="button" value="Stop">' +
-                        '<input id="resizeBtn" class="vpaidTemplateButtons" type="button" value="Resize Ad">' +
                         '<input id="skipBtn" class="vpaidTemplateButtons" type="button" value="Skip" ' + this.skipButtonVisibility() + '>' + 
                         '<input id="setSkippableBtn" class="vpaidTemplateButtons" type="button" value="Set Skippable">' + 
                         '<input id="interactionChangeBtn" class="vpaidTemplateButtons" type="button" value="Interaction">' + 
@@ -3776,9 +3775,6 @@ spotx.test.VPAIDAd.prototype.addButtonListeners_ = function()
 
     var stopBtn = this.getElement_('stopBtn');
     stopBtn.addEventListener('click', this.stopButtonOnClick_.bind(this));
-
-    var resizeBtn = this.getElement_('resizeBtn');
-    resizeBtn.addEventListener('click', this.resizeButtonOnClick_.bind(this));
 
     var skipBtn = this.getElement_('skipBtn');
     skipBtn.addEventListener('click', this.skipButtonOnClick_.bind(this));
@@ -4026,7 +4022,6 @@ spotx.test.VPAIDAd.prototype.clickThruButtonOnClick_ = function()
 };
 
 spotx.test.VPAIDAd.prototype.playButtonOnClick_ = function() {
-    console.log("Play Button Clicked.");
     this.resumeAd();
 };
 
@@ -4035,13 +4030,7 @@ spotx.test.VPAIDAd.prototype.pauseButtonOnClick_ = function() {
 }
 
 spotx.test.VPAIDAd.prototype.stopButtonOnClick_ = function() {
-    console.log("Stop Button Clicked.");
     this.stopAd();
-};
-
-spotx.test.VPAIDAd.prototype.resizeButtonOnClick_ = function() {
-    console.log("Resize Button Clicked.");
-    this.resizeAd(400, 600, 'normal');
 };
 
 spotx.test.VPAIDAd.prototype.skipButtonOnClick_ = function() {
@@ -4054,7 +4043,6 @@ spotx.test.VPAIDAd.prototype.skipButtonVisibility = function() {
     }
     return '';
 };
-
 
 spotx.test.VPAIDAd.prototype.setSkippableButtonOnClick_ = function() {
     console.log("Set Skipable Button Clicked.");
