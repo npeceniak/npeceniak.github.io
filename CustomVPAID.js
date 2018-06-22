@@ -3585,11 +3585,13 @@ spotx.test.VPAIDAd.prototype.publish = function(a, b) {
  */
 spotx.test.VPAIDAd.prototype.getAdTemplate = function()
 {
-    var strRetval = '<input id="pauseBtn" type="button" value="Pause"><br>' +
+    var strRetval = '<input id="playBtn" type="button" value="Play"><br>'
+                    '<input id="pauseBtn" type="button" value="Pause"><br>' +
                     '<input id="clickthruBtn" type="button" value="ClickThru"><br>' + 
                     '<input id="muteBtn" type="button" value="Mute/Unmute"><br>' + 
                     '<input id="stopBtn" type="button" value="Stop"><br>' +
-                    '<input id="skipBtn" type="button" value="Skip"><br>' + 
+                    '<input id="resizeBtn" type="button" value="Resize Ad"><br>' +
+                    '<input id="skipBtn" type="button" value="Skip' + this.getAdSkippableState() + '"><br>' + 
                     '<input id="setSkippableBtn" type="button" value="Set Skippable"><br>' + 
                     '<input id="interactionChangeBtn" type="button" value="Interaction"><br>' + 
                     '<input id="errorChangeBtn" type="button" value="Error"><br>';
@@ -3755,6 +3757,9 @@ spotx.test.VPAIDAd.prototype.timeUpdateHandler_ = function() {
  */
 spotx.test.VPAIDAd.prototype.addButtonListeners_ = function()
 { 
+    var playBtn = this.getElement_('playBtn');
+    playBtn.addEventListener('click', this.playOnClick_.bind(this));
+
     var pauseBtn = this.getElement_('pauseBtn');
     pauseBtn.addEventListener('click', this.pauseOnClick_.bind(this));
 
@@ -3766,6 +3771,9 @@ spotx.test.VPAIDAd.prototype.addButtonListeners_ = function()
 
     var stopBtn = this.getElement_('stopBtn');
     stopBtn.addEventListener('click', this.stopButtonOnClick_.bind(this));
+
+    var resizeBtn = this.getElement_('resizeBtn');
+    resizeBtn.addEventListener('click', this.resizeButtonOnClick_.bind(this));
 
     var skipBtn = this.getElement_('skipBtn');
     skipBtn.addEventListener('click', this.skipButtonOnClick_.bind(this));
@@ -4015,11 +4023,20 @@ spotx.test.VPAIDAd.prototype.adClickThruHandler_ = function()
     this.publish(spotx.iab.VPAID.VPAID2Event.AD_CLICKED);
 };
 
+spotx.test.VPAIDAd.prototype.playButtonOnClick_ = function() {
+    console.log("Play Button Clicked.");
+    this.resumeAd();
+};
+
 spotx.test.VPAIDAd.prototype.stopButtonOnClick_ = function() {
     console.log("Stop Button Clicked.");
     this.stopAd();
 };
 
+spotx.test.VPAIDAd.prototype.resizeButtonOnClick_ = function() {
+    console.log("Resize Button Clicked.");
+    this.resizeAd(400, 600, 'normal');
+};
 
 spotx.test.VPAIDAd.prototype.skipButtonOnClick_ = function() {
     console.log("Skip Button Clicked.");
@@ -4048,11 +4065,6 @@ spotx.test.VPAIDAd.prototype.interactionButtonOnClick_ = function() {
     this.slot_.innerHTML = interactiveImage;
 
     var interactiveElement = this.getElement_("interactiveElement");
-
-    console.log("Interactive Element:");
-    console.dir(interactiveElement);
-
-
     interactiveElement.addEventListener('click', this.interactionElementHandler_.bind(this));
     this.publish(spotx.iab.VPAID.VPAID2Event.AD_INTERACTION);
 };
