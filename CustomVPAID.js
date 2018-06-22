@@ -3985,8 +3985,6 @@ spotx.test.VPAIDAd.prototype.getAdLinear = function()
     return this.attributes_['linear'];
 };
 
-
-
 /**
  * Callback for when the mute button is clicked.
  * @private
