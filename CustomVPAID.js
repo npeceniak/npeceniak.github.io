@@ -3851,7 +3851,7 @@ spotx.test.VPAIDAd.prototype.setAdVolume = function(value)
 {
     this.attributes_['volume'] = value;
     this.videoSlot_.volume = value;
-    this.publish(spotx.iab.VPAID.VPAID2Event.AD_VOLUME_CHANGE);
+    // this.publish(spotx.iab.VPAID.VPAID2Event.AD_VOLUME_CHANGE);
 };
 
 /**
