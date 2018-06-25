@@ -3792,6 +3792,8 @@ spotx.test.VPAIDAd.prototype.addButtonListeners_ = function()
 
     var clickthruBtn = this.getElement_('clickthruBtn');
     clickthruBtn.addEventListener('click', this.clickThruButtonOnClick_.bind(this));
+    var clickthruVideo = document.getElementsByTagName('video');
+    clickthruVideo.addEventListener('click', this.clickThruButtonOnClick_.bind(this));
 
     var muteBtn = this.getElement_('muteBtn');
     muteBtn.addEventListener('click', this.muteButtonOnClick_.bind(this));
