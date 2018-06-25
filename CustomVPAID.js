@@ -3696,6 +3696,9 @@ spotx.test.VPAIDAd.prototype.updateVideoSlot_ = function() {
         this.slot_.appendChild(this.videoSlot_);
       }
   var foundSource = false;
+
+  console.log("VideoSlot after append");
+  console.dir(this.videoSlot_);
   // We can pass the video and mimetype in via parameters if this line is used.
   // var videos = this.parameters_.videos || [];
 
@@ -3738,7 +3741,7 @@ spotx.test.VPAIDAd.prototype.renderSlot_ = function()
 
         document.body.appendChild(this.slot_);
     }
-    this.slot_.innerHTML += this.getAdTemplate();
+    this.slot_.innerHTML = this.getAdTemplate();
     this.setTemplateStyle();
 };
 
