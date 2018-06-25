@@ -3728,10 +3728,10 @@ spotx.test.VPAIDAd.prototype.renderSlot_ = function()
         this.slot_ = document.createElement('div');
         goog.style.setWidth(this.slot_, this.iWidth);
         goog.style.setHeight(this.slot_, this.iHeight);
-        goog.style.setStyle(this.slot_, "background-color", "#e3e3e3");
+        // goog.style.setStyle(this.slot_, "background-color", "#e3e3e3");
         goog.style.setStyle(this.slot_, "top", "0");
         goog.style.setStyle(this.slot_, "left", "0");
-        goog.style.setStyle(this.slot_, "position", "absolute");
+        // goog.style.setStyle(this.slot_, "position", "absolute");
 
         document.body.appendChild(this.slot_);
     }
