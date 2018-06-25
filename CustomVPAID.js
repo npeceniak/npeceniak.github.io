@@ -4013,12 +4013,9 @@ spotx.test.VPAIDAd.prototype.updateTemplate = function()
     // this.slot_.innerHTML = this.getAdTemplate();
     // this.addButtonListeners_();
 
-    var template = document.getElementsByClassName('vpaidTemplateDiv');
-    console.log('Before:');
-    console.dir(template);
-    template = document.createTextNode(this.getAdTemplate());
-    console.log('After:');
-    console.dir(template);
+    document.getElementsByClassName('vpaidTemplateDiv').delete();
+    var template = document.createTextNode(this.getAdTemplate());
+    this.slot_.appendChild(template);
 };
 
 /**
