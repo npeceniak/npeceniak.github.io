@@ -3735,7 +3735,8 @@ spotx.test.VPAIDAd.prototype.renderSlot_ = function()
 
         document.body.appendChild(this.slot_);
     }
-    this.slot_.innerHTML = this.getAdTemplate();
+    this.slot.insertAdjacentHTML('beforeend', this.getAdTemplate());
+    // this.slot_.innerHTML = this.getAdTemplate();
     this.setTemplateStyle();
 };
 
