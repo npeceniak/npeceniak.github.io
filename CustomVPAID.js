@@ -3585,7 +3585,7 @@ spotx.test.VPAIDAd.prototype.publish = function(a, b) {
  */
 spotx.test.VPAIDAd.prototype.getAdTemplate = function()
 {
-    var strRetval = '<div align="center">' +
+    var strRetval = '<div align="center" style="z-index:5; position:absolute">' +
                         '<input id="playBtn" class="vpaidTemplateButtons" type="button" value="Play">' +
                         '<input id="pauseBtn" class="vpaidTemplateButtons" type="button" value="Pause">' +
                         '<input id="clickthruBtn" class="vpaidTemplateButtons" type="button" value="ClickThru">' + 
@@ -3693,6 +3693,8 @@ spotx.test.VPAIDAd.prototype.updateVideoSlot_ = function() {
     }
     if (this.videoSlot_.parentNode === null) {
         console.log("VideoSlot Was not attached to dom.");
+        goog.style.setStyle(this.videoSlot_, "z-index", "0");
+        goog.style.setStyle(this.videoSlot_, "position", "absolute");
         this.slot_.appendChild(this.videoSlot_);
       }
   var foundSource = false;
