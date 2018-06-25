@@ -3682,17 +3682,19 @@ spotx.test.VPAIDAd.prototype.initAd = function(
 
 
 spotx.test.VPAIDAd.prototype.updateVideoSlot_ = function() {
-  console.log("Video Slot:");
-  console.dir(this.videoSlot_);
-  if (this.videoSlot_ === null || this.videoSlot_.parentNode === null) {
-    var removedNode = this.videoSlot_.remove();
-    console.dir(removedNode);
-    console.log("Video Slot was null. Creating a video slot.");
-    this.videoSlot_ = document.createElement('video');
-    this.videoSlot_.width = this.getAdWidth();
-    this.videoSlot_.height = this.getAdHeight();
-    this.slot_.appendChild(this.videoSlot_);
-  }
+    console.log("Video Slot:");
+    console.dir(this.videoSlot_);
+    if (this.videoSlot_ === null) {
+        console.log("Video Slot was null. Creating a video slot.");
+        this.videoSlot_ = document.createElement('video');
+        this.videoSlot_.width = this.getAdWidth();
+        this.videoSlot_.height = this.getAdHeight();
+        this.slot_.appendChild(this.videoSlot_);
+    }
+    if (this.videoSlot_.parentNode === null) {
+        console.log("VideoSlot Was not attached to dom.");
+        this.slot_.appendChild(this.videoSlot_);
+      }
   var foundSource = false;
   // We can pass the video and mimetype in via parameters if this line is used.
   // var videos = this.parameters_.videos || [];
