@@ -3585,7 +3585,7 @@ spotx.test.VPAIDAd.prototype.publish = function(a, b) {
  */
 spotx.test.VPAIDAd.prototype.getAdTemplate = function()
 {
-    var strRetval = '<div align="center" style="z-index:5; position:absolute; width:100%">' +
+    var strRetval = '<div align="center" class="vpaidTemplateDiv" style="z-index:5; position:absolute; width:100%">' +
                         '<input id="playBtn" class="vpaidTemplateButtons" type="button" value="Play">' +
                         '<input id="pauseBtn" class="vpaidTemplateButtons" type="button" value="Pause">' +
                         '<input id="clickthruBtn" class="vpaidTemplateButtons" type="button" value="ClickThru">' + 
@@ -3851,7 +3851,6 @@ spotx.test.VPAIDAd.prototype.setAdVolume = function(value)
 {
     this.attributes_['volume'] = value;
     this.videoSlot_.volume = value;
-    // this.publish(spotx.iab.VPAID.VPAID2Event.AD_VOLUME_CHANGE);
 };
 
 /**
@@ -4011,8 +4010,11 @@ spotx.test.VPAIDAd.prototype.getAdLinear = function()
 
 spotx.test.VPAIDAd.prototype.updateTemplate = function()
 {
-    this.slot_.innerHTML = this.getAdTemplate();
-    this.addButtonListeners_();
+    // this.slot_.innerHTML = this.getAdTemplate();
+    // this.addButtonListeners_();
+
+    var template = document.getElementsByClass('vpaidTemplateDiv');
+    template = document.createTextNode(this.getAdTemplate());
 };
 
 /**
