@@ -4010,12 +4010,8 @@ spotx.test.VPAIDAd.prototype.getAdLinear = function()
 
 spotx.test.VPAIDAd.prototype.updateTemplate = function()
 {
-    // this.slot_.innerHTML = this.getAdTemplate();
-    // this.addButtonListeners_();
-
-    document.getElementsByClassName('vpaidTemplateDiv').delete();
-    var template = document.createTextNode(this.getAdTemplate());
-    this.slot_.appendChild(template);
+    this.slot_.innerHTML = this.getAdTemplate();
+    this.addButtonListeners_();
 };
 
 /**
