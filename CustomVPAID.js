@@ -3586,7 +3586,6 @@ spotx.test.VPAIDAd.prototype.publish = function(a, b) {
 spotx.test.VPAIDAd.prototype.getAdTemplate = function()
 {
     var strRetval = '<div align="center">' +
-                        // '<link rel="stylesheet" type="text/css" href="https://npeceniak.github.io/vpaidButtons.css">' +
                         '<input id="playBtn" class="vpaidTemplateButtons" type="button" value="Play">' +
                         '<input id="pauseBtn" class="vpaidTemplateButtons" type="button" value="Pause">' +
                         '<input id="clickthruBtn" class="vpaidTemplateButtons" type="button" value="ClickThru">' + 
@@ -3599,6 +3598,26 @@ spotx.test.VPAIDAd.prototype.getAdTemplate = function()
                     '</div>';
 
     return strRetval;
+}
+
+spotx.test.VPAIDAd.prototype.setTemplateStyle = function() {
+
+    var styleBody = `.vpaidTemplateButtons {
+        background-color: #8ec641;
+        color: #1b9dd0;
+        border: 2px solid #1b9dd0;
+        text-align: center;
+        font-size: 80%;
+        width: 30%;
+        font-family: "Lato", sans-serif;
+        margin: 2px 2px 2px 2px;
+        font-weight: bold;
+    }`;
+
+    var styleTag = document.createElement('style');
+    styleTag.type = 'text/css';
+    styleTag.appendChild(document.createTextNode(styleBody));
+    document.head.appendChild(styleTag);
 }
 
 /**
@@ -3717,25 +3736,7 @@ spotx.test.VPAIDAd.prototype.renderSlot_ = function()
         document.body.appendChild(this.slot_);
     }
     this.slot_.innerHTML = this.getAdTemplate();
-    console.log('Header:');
-    console.dir(document.head);
-
-    var styleBody = `.vpaidTemplateButtons {
-        background-color: #8ec641;
-        color: #1b9dd0;
-        border: 2px solid #1b9dd0;
-        text-align: center;
-        font-size: 80%;
-        width: 30%;
-        font-family: "Lato", sans-serif;
-        margin: 2px 2px 2px 2px;
-        font-weight: bold;
-    }`;
-
-    var styleTag = document.createElement('style');
-    styleTag.type = 'text/css';
-    styleTag.appendChild(document.createTextNode(styleBody));
-    document.head.appendChild(styleTag);
+    this.setTemplateStyle();
 };
 
 
