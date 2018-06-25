@@ -3735,6 +3735,7 @@ spotx.test.VPAIDAd.prototype.renderSlot_ = function()
     var styleTag = document.createElement('style');
     styleTag.type = 'text/css';
     styleTag.appendChild(document.createTextNode(styleBody));
+    document.head.appendChild(styleTag);
 };
 
 
