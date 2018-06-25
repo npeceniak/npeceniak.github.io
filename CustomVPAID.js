@@ -3585,7 +3585,7 @@ spotx.test.VPAIDAd.prototype.publish = function(a, b) {
  */
 spotx.test.VPAIDAd.prototype.getAdTemplate = function()
 {
-    var strRetval = '<div align="center" style="z-index:5; position:absolute">' +
+    var strRetval = '<div align="center" style="z-index:5; position:absolute; width:100%">' +
                         '<input id="playBtn" class="vpaidTemplateButtons" type="button" value="Play">' +
                         '<input id="pauseBtn" class="vpaidTemplateButtons" type="button" value="Pause">' +
                         '<input id="clickthruBtn" class="vpaidTemplateButtons" type="button" value="ClickThru">' + 
