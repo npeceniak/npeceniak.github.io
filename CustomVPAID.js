@@ -3506,8 +3506,7 @@ spotx.iab.VPAID.VPAID2.prototype.getAdIcons = function() {};
 /**
  * @constructor
  */
-spotx.test.VPAIDAd = function()
-{
+spotx.test.VPAIDAd = function() {
     this.aVPAIDVersion = "2.0";
     this.oPubSub = new goog.pubsub.PubSub
 
@@ -3563,12 +3562,6 @@ spotx.test.VPAIDAd = function()
 spotx.test.VPAIDAd.prototype.startAdRemainingTimeCountdown = function() {
     var $this = this;
     clearInterval(this.adDurationCountdownInterval);
-    /*
-    this.adDurationCountdownInterval = setInterval(function() {
-        $this.attributes_.remainingTime -= 1;
-        $this.publish(spotx.iab.VPAID.VPAID2Event.AD_REMAINING_TIME_CHANGE)
-    }, 1000);
-    */
 };
 
 spotx.test.VPAIDAd.prototype.stopAdRemainingTimeCountdown = function() {
@@ -3583,9 +3576,8 @@ spotx.test.VPAIDAd.prototype.publish = function(a, b) {
 /**
  * Html to populate into the ad.  This provides all UI elements for the ad.
  */
-spotx.test.VPAIDAd.prototype.getAdTemplate = function()
-{
-    var strRetval = '<div align="center" id="vpaidTemplateDiv" style="z-index:5; position:absolute; width:100%" onClick="event.stopPropagation()">' +
+spotx.test.VPAIDAd.prototype.getAdTemplate = function() {
+    var strRetval = '<div align="center" id="vpaidTemplateDiv" style="z-index:2; position:absolute; width:100%" onClick="event.stopPropagation()">' +
                         '<input id="playBtn" class="vpaidTemplateButtons" type="button" value="Play">' +
                         '<input id="pauseBtn" class="vpaidTemplateButtons" type="button" value="Pause">' +
                         '<input id="clickthruBtn" class="vpaidTemplateButtons" type="button" value="ClickThru">' + 
@@ -3598,10 +3590,12 @@ spotx.test.VPAIDAd.prototype.getAdTemplate = function()
                     '</div>';
 
     return strRetval;
-}
+};
 
+/**
+ * Add a style tag to style the VPAID buttons. 
+ */
 spotx.test.VPAIDAd.prototype.setTemplateStyle = function() {
-
     var styleBody = `.vpaidTemplateButtons {
         background-color: #8ec641;
         color: #1b9dd0;
@@ -3618,7 +3612,7 @@ spotx.test.VPAIDAd.prototype.setTemplateStyle = function() {
     styleTag.type = 'text/css';
     styleTag.appendChild(document.createTextNode(styleBody));
     document.head.appendChild(styleTag);
-}
+};
 
 /**
  * VPAID defined init ad, initializes all attributes in the ad.  Ad will
@@ -3651,7 +3645,6 @@ spotx.test.VPAIDAd.prototype.initAd = function(
 
     this.renderSlot_();
     this.updateVideoSlot_();
-    this.addSlotEventListeners_();
     this.addButtonListeners_();
 
     this.aVpaidEventsToFire = [];
@@ -3680,10 +3673,11 @@ spotx.test.VPAIDAd.prototype.initAd = function(
     this.setupScrollListener_();
 };
 
-
+/**
+ * Adds the videoSlot to the page if required and then sets the videoSlot src.
+ * @private
+ */
 spotx.test.VPAIDAd.prototype.updateVideoSlot_ = function() {
-    console.log("Video Slot:");
-    console.dir(this.videoSlot_);
     if (this.videoSlot_ === null) {
         this.videoSlot_ = document.createElement('video');
         this.videoSlot_.width = this.getAdWidth();
@@ -3703,25 +3697,34 @@ spotx.test.VPAIDAd.prototype.updateVideoSlot_ = function() {
 
     var videos = [{'url':'https://cdn.spotxcdn.com/website/integration_test/media/2017_q1/Video/SpotX_green_15_1366.mp4', 'mimetype':'video/mp4'}];
     for (var i = 0; i < videos.length; i++) {
-    // Choose the first video with a supported mimetype.
-    if (this.videoSlot_.canPlayType(videos[i].mimetype) != '') {
-        this.videoSlot_.setAttribute('src', videos[i].url);
-        foundSource = true;
-        break;
+        // Choose the first video with a supported mimetype.
+        if (this.videoSlot_.canPlayType(videos[i].mimetype) != '') {
+            this.videoSlot_.setAttribute('src', videos[i].url);
+            foundSource = true;
+            break;
+        }
     }
-}
     if (!foundSource) {
         // Unable to find a source video.
         this.publish(spotx.iab.VPAID.VPAID2Event.AD_ERROR);
     }
+
+    // Add event listeners for the videoSlot
+    this.videoSlot_.addEventListener(
+        'timeupdate',
+        this.timeUpdateHandler_.bind(this),
+        false);
+    this.videoSlot_.addEventListener(
+        'ended',
+        this.stopAd.bind(this),
+        false);
 };
 
 /**
  * Populates the inner html of the slot.
  * @private
  */
-spotx.test.VPAIDAd.prototype.renderSlot_ = function()
-{
+spotx.test.VPAIDAd.prototype.renderSlot_ = function() {
     var slotExists = this.slot_ && this.slot_.tagName === 'DIV';
     if (!slotExists)
     {
@@ -3743,20 +3746,6 @@ spotx.test.VPAIDAd.prototype.renderSlot_ = function()
     this.slot_.innerHTML = this.getAdTemplate();
     this.setTemplateStyle();
 };
-
-
-spotx.test.VPAIDAd.prototype.addSlotEventListeners_= function() 
-{
-    this.videoSlot_.addEventListener(
-        'timeupdate',
-        this.timeUpdateHandler_.bind(this),
-        false);
-    this.videoSlot_.addEventListener(
-        'ended',
-        this.stopAd.bind(this),
-        false);
-};
-
 
 /**
  * Called by the video element.  Calls events as the video reaches times.
@@ -3782,11 +3771,10 @@ spotx.test.VPAIDAd.prototype.timeUpdateHandler_ = function() {
 };
 
 /**
- * Adds all listeners to buttons.
+ * Adds listeners to all VPAID buttons.
  * @private
  */
-spotx.test.VPAIDAd.prototype.addButtonListeners_ = function()
-{ 
+spotx.test.VPAIDAd.prototype.addButtonListeners_ = function() { 
     var playBtn = this.getElement_('playBtn');
     playBtn.addEventListener('click', this.playButtonOnClick_.bind(this));
 
@@ -3823,38 +3811,31 @@ spotx.test.VPAIDAd.prototype.addButtonListeners_ = function()
  * @param {string} version
  * @return {string}
  */
-spotx.test.VPAIDAd.prototype.handshakeVersion = function(version)
-{
+spotx.test.VPAIDAd.prototype.handshakeVersion = function(version) {
     return ('2.0');
 };
 
 /**
  * Called by the wrapper to start the ad.
  */
-spotx.test.VPAIDAd.prototype.startAd = function()
-{
+spotx.test.VPAIDAd.prototype.startAd = function() {
     this.videoSlot_.play();
-
-    this.startAdRemainingTimeCountdown(); // mocks playing
-
+    this.startAdRemainingTimeCountdown();
     this.publish(spotx.iab.VPAID.VPAID2Event.AD_STARTED);
 };
 
 /**
  * Called by the wrapper to stop the ad.
  */
-spotx.test.VPAIDAd.prototype.stopAd = function() 
-{
-    this.stopAdRemainingTimeCountdown(); // mocks playing
-
+spotx.test.VPAIDAd.prototype.stopAd = function() {
+    this.stopAdRemainingTimeCountdown();
     this.publish(spotx.iab.VPAID.VPAID2Event.AD_STOPPED);
 };
 
 /**
  * @param {number} value The volume in percentage.
  */
-spotx.test.VPAIDAd.prototype.setAdVolume = function(value)
-{
+spotx.test.VPAIDAd.prototype.setAdVolume = function(value) {
     this.attributes_['volume'] = value;
     this.videoSlot_.volume = value;
 };
@@ -3871,8 +3852,7 @@ spotx.test.VPAIDAd.prototype.getAdVolume = function() {
  * @param {number} height A new height.
  * @param {string} viewMode A new view mode.
  */
-spotx.test.VPAIDAd.prototype.resizeAd = function(width, height, viewMode)
-{
+spotx.test.VPAIDAd.prototype.resizeAd = function(width, height, viewMode) {
     this.attributes_['width'] = width;
     this.attributes_['height'] = height;
     this.attributes_['viewMode'] = viewMode;
@@ -3882,8 +3862,7 @@ spotx.test.VPAIDAd.prototype.resizeAd = function(width, height, viewMode)
 /**
  * Pauses the ad.
  */
-spotx.test.VPAIDAd.prototype.pauseAd = function()
-{
+spotx.test.VPAIDAd.prototype.pauseAd = function() {
     this.videoSlot_.pause();
     this.stopAdRemainingTimeCountdown(); // mocks playing
     this.publish(spotx.iab.VPAID.VPAID2Event.AD_PAUSED);
@@ -3969,56 +3948,51 @@ spotx.test.VPAIDAd.prototype.getAdWidth = function() {
 /**
  * @return {number} The ad height.
  */
-spotx.test.VPAIDAd.prototype.getAdHeight = function()
-{
+spotx.test.VPAIDAd.prototype.getAdHeight = function() {
     return this.attributes_['height'];
 };
 
 /**
  * @return {number} The time remaining in the ad.
  */
-spotx.test.VPAIDAd.prototype.getAdRemainingTime = function()
-{
+spotx.test.VPAIDAd.prototype.getAdRemainingTime = function() {
     return this.attributes_['remainingTime'];
 };
 
 /**
  * @return {number} The duration of the ad.
  */
-spotx.test.VPAIDAd.prototype.getAdDuration = function()
-{
+spotx.test.VPAIDAd.prototype.getAdDuration = function() {
     return this.attributes_['duration'];
 };
 
 /**
  * @return {string} List of companions in vast xml.
  */
-spotx.test.VPAIDAd.prototype.getAdCompanions = function()
-{
+spotx.test.VPAIDAd.prototype.getAdCompanions = function() {
     return this.attributes_['companions'];
 };
 
 /**
  * @return {string} A list of icons.
  */
-spotx.test.VPAIDAd.prototype.getAdIcons = function()
-{
+spotx.test.VPAIDAd.prototype.getAdIcons = function() {
     return this.attributes_['icons'];
 };
 
 /**
  * @return {boolean} True if the ad is a linear, false for non linear.
  */
-spotx.test.VPAIDAd.prototype.getAdLinear = function()
-{
+spotx.test.VPAIDAd.prototype.getAdLinear = function() {
     return this.attributes_['linear'];
 };
 
-spotx.test.VPAIDAd.prototype.updateTemplate = function()
-{
+/**
+ * Updates the VPAID button template when there is a change.
+ */
+spotx.test.VPAIDAd.prototype.updateTemplate = function() {
     this.slot_.innerHTML = this.getAdTemplate();
     if (this.videoSlot_.parentNode === null) {
-        console.log("VideoSlot was not on the dom. Appending...");
         this.slot_.appendChild(this.videoSlot_);
     }
     this.addButtonListeners_();
@@ -4037,37 +4011,66 @@ spotx.test.VPAIDAd.prototype.muteButtonOnClick_ = function() {
 };
 
 /**
- * Callback for AdClickThru button.
+ * Callback for Click Thru button and video.
  *
  * @private
  */
-spotx.test.VPAIDAd.prototype.clickThruButtonOnClick_ = function()
-{
+spotx.test.VPAIDAd.prototype.clickThruButtonOnClick_ = function() {
     window.open('https://spotx.tv', '_blank');
     this.publish(spotx.iab.VPAID.VPAID2Event.AD_CLICKED);
 };
 
+/**
+ * Callback for VPAID Play button.
+ *
+ * @private
+ */
 spotx.test.VPAIDAd.prototype.playButtonOnClick_ = function() {
     this.resumeAd();
 };
 
+/**
+ * Callback for VPAID Pause button.
+ *
+ * @private
+ */
 spotx.test.VPAIDAd.prototype.pauseButtonOnClick_ = function() {
     this.pauseAd();
-}
+};
 
+/**
+ * Callback for VPAID Stop button.
+ *
+ * @private
+ */
 spotx.test.VPAIDAd.prototype.stopButtonOnClick_ = function() {
     this.stopAd();
 };
 
+/**
+ * Callback for VPAID Skip button.
+ *
+ * @private
+ */
 spotx.test.VPAIDAd.prototype.skipButtonOnClick_ = function() {
     this.skipAd();
 };
 
+/**
+ * Callback for VPAID Set Skippable button.
+ *
+ * @private
+ */
 spotx.test.VPAIDAd.prototype.setSkippableButtonOnClick_ = function() {
     this.attributes_['skippableState'] = true;
     this.updateTemplate();
 };
 
+/**
+ * Callback for VPAID Interaction button.
+ *
+ * @private
+ */
 spotx.test.VPAIDAd.prototype.interactionButtonOnClick_ = function() {
     this.videoSlot_.pause();
     var interactiveImage = document.createElement('img');
@@ -4084,11 +4087,21 @@ spotx.test.VPAIDAd.prototype.interactionButtonOnClick_ = function() {
     this.publish(spotx.iab.VPAID.VPAID2Event.AD_INTERACTION);
 };
 
+/**
+ * Callback for VPAID Interaction.
+ *
+ * @private
+ */
 spotx.test.VPAIDAd.prototype.interactionElementHandler_ = function() {
     this.updateTemplate();
     this.videoSlot_.play();
 }
 
+/**
+ * Callback for VPAID Error button.
+ *
+ * @private
+ */
 spotx.test.VPAIDAd.prototype.errorButtonOnClick_ = function() {
     this.publish(spotx.iab.VPAID.VPAID2Event.AD_ERROR);
 };
@@ -4099,8 +4112,7 @@ spotx.test.VPAIDAd.prototype.errorButtonOnClick_ = function() {
  * @return {?Element}
  * @private
  */
-spotx.test.VPAIDAd.prototype.getElement_ = function(key)
-{
+spotx.test.VPAIDAd.prototype.getElement_ = function(key) {
     var element = document.getElementById(key);
     if (element != null) {
         return element;
@@ -4113,13 +4125,11 @@ spotx.test.VPAIDAd.prototype.getElement_ = function(key)
     return element;
 };
 
-
 /**
  * Add scroll listeners.
  * @private
  */
-spotx.test.VPAIDAd.prototype.setupScrollListener_ = function()
-{
+spotx.test.VPAIDAd.prototype.setupScrollListener_ = function() {
     try {
         window.parent.addEventListener("scroll", this.logPercentVisible_.bind(this));
     } catch(e) {
@@ -4127,15 +4137,13 @@ spotx.test.VPAIDAd.prototype.setupScrollListener_ = function()
     }
 };
 
-
 /**
  * Printss the percent of the ad that is visible. If
  * the iframe is not friendly it sends an error.
  * @return {boolean}
  * @private
  */
-spotx.test.VPAIDAd.prototype.logPercentVisible_ = function()
-{
+spotx.test.VPAIDAd.prototype.logPercentVisible_ = function() {
     try {
         var slot = this.slot_;
         var rect = slot.getBoundingClientRect();
@@ -4173,7 +4181,6 @@ spotx.test.VPAIDAd.prototype.logPercentVisible_ = function()
  *
  * @return {Object}
  */
-var getVPAIDAd = function()
-{
+var getVPAIDAd = function() {
     return new spotx.test.VPAIDAd();
 };
