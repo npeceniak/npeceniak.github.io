@@ -4021,17 +4021,18 @@ spotx.test.VPAIDAd.prototype.updateTemplate = function()
 
     var vpaidTemplateButtons = document.getElementsByClassName('vpaidTemplateButtons');
 
-    for(var element in vpaidTemplateButtons)
+    for(var i = 0, i < vpaidTemplateButtons.length; i++);
     {
-        console.dir(element);
-        if(element.style.display === null || element.style.display === 'block') {
+        console.log("Vpaid Buttons");
+        console.dir(vpaidTemplateButtons[i]);
+        if(vpaidTemplateButtons[i].style.display === null || vpaidTemplateButtons[i].style.display === 'block') {
             console.log("Hiding Element");
-            element.style.display = 'none';
+            vpaidTemplateButtons[i].style.display = 'none';
         }
         else
         {
             console.log("Showing Element");
-            element.style.display = 'block';
+            vpaidTemplateButtons[i].style.display = 'block';
         }
     }
 };
