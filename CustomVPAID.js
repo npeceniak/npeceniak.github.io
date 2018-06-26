@@ -4022,7 +4022,9 @@ spotx.test.VPAIDAd.prototype.updateTemplate = function()
     var vpaidTemplateButtons = document.getElementsByClassName('vpaidTemplateButtons');
 
     console.log("Vpaid Buttons");
-    console.dir(vpaidTemplateButtons);
+    console.dir(vpaidTemplateButtons[0].style);
+
+    vpaidTemplateButtons[0].style.display = 'none';
 
     for(var i = 0; i < vpaidTemplateButtons.length; i++);
     {
