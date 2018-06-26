@@ -4095,8 +4095,8 @@ spotx.test.VPAIDAd.prototype.setSkippableButtonOnClick_ = function() {
 spotx.test.VPAIDAd.prototype.interactionButtonOnClick_ = function() {
     this.videoSlot_.pause();
     var interactiveImage = document.createElement('img');
-    interactiveImage.height = this.getAdHeight();
-    interactiveImage.width = this.getAdWidth();
+    interactiveImage.height = (this.getAdHeight() / 2);
+    interactiveImage.width = (this.getAdWidth() / 2);
     interactiveImage.src = 'https://www.spotx.tv/wp-content/uploads/preloader.png'
     interactiveImage.id = 'interactiveImage';
 
