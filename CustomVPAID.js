@@ -3591,7 +3591,7 @@ spotx.test.VPAIDAd.prototype.getAdTemplate = function()
                         '<input id="clickthruBtn" class="vpaidTemplateButtons" type="button" value="ClickThru">' + 
                         '<input id="muteBtn" class="vpaidTemplateButtons" type="button" value="Mute/Unmute">' + 
                         '<input id="stopBtn" class="vpaidTemplateButtons" type="button" value="Stop">' +
-                        '<input id="skipBtn" class="vpaidTemplateButtons" type="button" value="Skippable: '+ this.getAdSkippableState() +'>' + 
+                        '<input id="skipBtn" class="vpaidTemplateButtons" type="button" value="Skippable: '+ this.getAdSkippableState() +'">' + 
                         '<input id="setSkippableBtn" class="vpaidTemplateButtons" type="button" value="Set Skippable">' + 
                         '<input id="interactionChangeBtn" class="vpaidTemplateButtons" type="button" value="Interaction">' + 
                         '<input id="errorChangeBtn" class="vpaidTemplateButtons" type="button" value="Error">' + 
