@@ -3591,7 +3591,7 @@ spotx.test.VPAIDAd.prototype.getAdTemplate = function()
                         '<input id="clickthruBtn" class="vpaidTemplateButtons" type="button" value="ClickThru">' + 
                         '<input id="muteBtn" class="vpaidTemplateButtons" type="button" value="Mute/Unmute">' + 
                         '<input id="stopBtn" class="vpaidTemplateButtons" type="button" value="Stop">' +
-                        '<input id="skipBtn" class="vpaidTemplateButtons" type="button" value="Skip" ' + this.skipButtonVisibility() + '>' + 
+                        '<input id="skipBtn" class="vpaidTemplateButtons" type="button" value="Skippable: '+ this.getAdSkippableState() +'>' + 
                         '<input id="setSkippableBtn" class="vpaidTemplateButtons" type="button" value="Set Skippable">' + 
                         '<input id="interactionChangeBtn" class="vpaidTemplateButtons" type="button" value="Interaction">' + 
                         '<input id="errorChangeBtn" class="vpaidTemplateButtons" type="button" value="Error">' + 
@@ -4028,7 +4028,7 @@ spotx.test.VPAIDAd.prototype.updateTemplate = function()
     {
         console.log("Vpaid Buttons Style Proptery");
         console.dir(vpaidTemplateButtons[i].style);
-        
+
         if(vpaidTemplateButtons[i].style.display === null || vpaidTemplateButtons[i].style.display === 'block') {
             console.log("Hiding Element");
             vpaidTemplateButtons[i].style.display = 'none';
@@ -4080,12 +4080,12 @@ spotx.test.VPAIDAd.prototype.skipButtonOnClick_ = function() {
     this.skipAd();
 };
 
-spotx.test.VPAIDAd.prototype.skipButtonVisibility = function() {
-    if(this.getAdSkippableState() === false) {
-        return 'style="display:none"';
-    }
-    return '';
-};
+// spotx.test.VPAIDAd.prototype.skipButtonVisibility = function() {
+//     if(this.getAdSkippableState() === false) {
+//         return 'style="display:none"';
+//     }
+//     return '';
+// };
 
 spotx.test.VPAIDAd.prototype.setSkippableButtonOnClick_ = function() {
     this.attributes_['skippableState'] = true;
