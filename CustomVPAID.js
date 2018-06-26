@@ -3585,7 +3585,7 @@ spotx.test.VPAIDAd.prototype.publish = function(a, b) {
  */
 spotx.test.VPAIDAd.prototype.getAdTemplate = function()
 {
-    var strRetval = '<div align="center" class="vpaidTemplateDiv" style="z-index:5; position:absolute; width:100%" onClick="event.stopPropagation()">' +
+    var strRetval = '<div align="center" id="vpaidTemplateDiv" style="z-index:5; position:absolute; width:100%" onClick="event.stopPropagation()">' +
                         '<input id="playBtn" class="vpaidTemplateButtons" type="button" value="Play">' +
                         '<input id="pauseBtn" class="vpaidTemplateButtons" type="button" value="Pause">' +
                         '<input id="clickthruBtn" class="vpaidTemplateButtons" type="button" value="ClickThru">' + 
@@ -3685,15 +3685,16 @@ spotx.test.VPAIDAd.prototype.updateVideoSlot_ = function() {
     console.log("Video Slot:");
     console.dir(this.videoSlot_);
     if (this.videoSlot_ === null) {
+        this.videoSlot_ = document.createElement('video');
         this.videoSlot_.width = this.getAdWidth();
         this.videoSlot_.height = this.getAdHeight();
-        goog.style.setStyle(this.videoSlot_, "z-index", "0");
-        goog.style.setStyle(this.videoSlot_, "position", "absolute");
+        goog.style.setStyle(this.videoSlot_, 'z-index', '0');
+        goog.style.setStyle(this.videoSlot_, 'position', 'absolute');
         this.slot_.appendChild(this.videoSlot_);
     }
     if (this.videoSlot_.parentNode === null) {
-        goog.style.setStyle(this.videoSlot_, "z-index", "0");
-        goog.style.setStyle(this.videoSlot_, "position", "absolute");
+        goog.style.setStyle(this.videoSlot_, 'z-index', '0');
+        goog.style.setStyle(this.videoSlot_, 'position', 'absolute');
         this.slot_.appendChild(this.videoSlot_);
     }
     var foundSource = false;
@@ -4015,8 +4016,21 @@ spotx.test.VPAIDAd.prototype.getAdLinear = function()
 
 spotx.test.VPAIDAd.prototype.updateTemplate = function()
 {
-    this.slot_.innerHTML = this.getAdTemplate();
-    this.addButtonListeners_();
+    // this.slot_.innerHTML = this.getAdTemplate();
+    // this.addButtonListeners_();
+
+    var vpaidTemplateButtons = document.getElementsByClassName('vpaidTemplateButtons');
+
+    for(var element in vpaidTemplateButtons)
+    {
+        if(element.style.display === null || element.style.display === 'block') {
+            element.style.display = 'none';
+        }
+        else
+        {
+            element.style.display = 'block';
+        }
+    }
 };
 
 /**
@@ -4072,21 +4086,24 @@ spotx.test.VPAIDAd.prototype.setSkippableButtonOnClick_ = function() {
 
 spotx.test.VPAIDAd.prototype.interactionButtonOnClick_ = function() {
     this.videoSlot_.pause();
-    var imageId = "interactiveElement",
-        imageSrc = 'https://www.spotx.tv/wp-content/uploads/preloader.png',
-        imageHeight = this.getAdHeight(),
-        imageWidth = this.getAdWidth(),
-        interactiveImage = '<img id="' + imageId + '" src="' + imageSrc + '" height="' + imageHeight + '" width="' + imageWidth + '">';
+    var interactiveImage = document.createElement('img');
+    interactiveImage.height = this.getAdHeight();
+    interactiveImage.width = this.getAdWidth();
+    interactiveImage.src = 'https://www.spotx.tv/wp-content/uploads/preloader.png'
+    interactiveImage.id = 'interactiveImage';
 
-    this.slot_.innerHTML = interactiveImage;
+    var vpaidTemplateDiv = document.getElementById('vpaidTemplateDiv');
+    vpaidTemplateDiv.appendChild(interactiveImage);
 
-    var interactiveElement = this.getElement_("interactiveElement");
+    var interactiveElement = this.getElement_("interactiveImage");
     interactiveElement.addEventListener('click', this.interactionElementHandler_.bind(this));
     this.publish(spotx.iab.VPAID.VPAID2Event.AD_INTERACTION);
 };
 
 spotx.test.VPAIDAd.prototype.interactionElementHandler_ = function() {
-    this.updateTemplate()
+    this.updateTemplate();
+    var interactiveImage = document.getElementById('interactiveImage');
+    interactiveImage.style.display = 'none';
     this.videoSlot_.play();
 }
 
