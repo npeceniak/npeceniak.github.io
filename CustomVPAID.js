@@ -4017,6 +4017,7 @@ spotx.test.VPAIDAd.prototype.getAdLinear = function()
 spotx.test.VPAIDAd.prototype.updateTemplate = function()
 {
     this.slot_.innerHTML = this.getAdTemplate();
+    this.slot_.appendChild(this.videoSlot_);
     this.addButtonListeners_();
 };
 
