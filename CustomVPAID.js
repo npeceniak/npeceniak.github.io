@@ -4022,11 +4022,9 @@ spotx.test.VPAIDAd.prototype.updateTemplate = function()
     var vpaidTemplateButtons = document.getElementsByClassName('vpaidTemplateButtons');
 
     console.log("Vpaid Buttons");
-    console.dir(vpaidTemplateButtons[0].style);
+    console.dir(vpaidTemplateButtons);
 
-    vpaidTemplateButtons[0].style.display = 'none';
-
-    for(var i = 0; i < vpaidTemplateButtons.length; i++);
+    for(var i = 0; i < 9; i++);
     {
         // if(vpaidTemplateButtons[i].style.display === null || vpaidTemplateButtons[i].style.display === 'block') {
         //     console.log("Hiding Element");
