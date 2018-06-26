@@ -4018,27 +4018,6 @@ spotx.test.VPAIDAd.prototype.updateTemplate = function()
 {
     this.slot_.innerHTML = this.getAdTemplate();
     this.addButtonListeners_();
-
-    // var vpaidTemplateButtons = document.getElementsByClassName('vpaidTemplateButtons');
-
-    // console.log("Vpaid Buttons");
-    // console.dir(vpaidTemplateButtons);
-
-    // for(var i = 0; i < vpaidTemplateButtons.length; i++)
-    // {
-    //     console.log("Vpaid Buttons Style Proptery");
-    //     console.dir(vpaidTemplateButtons[i].style);
-
-    //     if(vpaidTemplateButtons[i].style.display === null || vpaidTemplateButtons[i].style.display === 'block') {
-    //         console.log("Hiding Element");
-    //         vpaidTemplateButtons[i].style.display = 'none';
-    //     }
-    //     else
-    //     {
-    //         console.log("Showing Element");
-    //         vpaidTemplateButtons[i].style.display = 'block';
-    //     }
-    // }
 };
 
 /**
@@ -4080,13 +4059,6 @@ spotx.test.VPAIDAd.prototype.skipButtonOnClick_ = function() {
     this.skipAd();
 };
 
-// spotx.test.VPAIDAd.prototype.skipButtonVisibility = function() {
-//     if(this.getAdSkippableState() === false) {
-//         return 'style="display:none"';
-//     }
-//     return '';
-// };
-
 spotx.test.VPAIDAd.prototype.setSkippableButtonOnClick_ = function() {
     this.attributes_['skippableState'] = true;
     this.updateTemplate();
@@ -4110,8 +4082,6 @@ spotx.test.VPAIDAd.prototype.interactionButtonOnClick_ = function() {
 
 spotx.test.VPAIDAd.prototype.interactionElementHandler_ = function() {
     this.updateTemplate();
-    var interactiveImage = document.getElementById('interactiveImage');
-    interactiveImage.style.display = 'none';
     this.videoSlot_.play();
 }
 
