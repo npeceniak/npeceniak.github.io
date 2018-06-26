@@ -4026,6 +4026,9 @@ spotx.test.VPAIDAd.prototype.updateTemplate = function()
 
     for(var i = 0; i < vpaidTemplateButtons.length; i++)
     {
+        console.log("Vpaid Buttons Style Proptery");
+        console.dir(vpaidTemplateButtons[i].style);
+        
         if(vpaidTemplateButtons[i].style.display === null || vpaidTemplateButtons[i].style.display === 'block') {
             console.log("Hiding Element");
             vpaidTemplateButtons[i].style.display = 'none';
@@ -4035,8 +4038,6 @@ spotx.test.VPAIDAd.prototype.updateTemplate = function()
             console.log("Showing Element");
             vpaidTemplateButtons[i].style.display = 'block';
         }
-        console.log("Vpaid Buttons Style Proptery");
-        console.dir(vpaidTemplateButtons[i]);
     }
 };
 
