@@ -3705,7 +3705,6 @@ spotx.test.VPAIDAd.prototype.updateVideoSlot_ = function() {
     // Choose the first video with a supported mimetype.
     if (this.videoSlot_.canPlayType(videos[i].mimetype) != '') {
         this.videoSlot_.setAttribute('src', videos[i].url);
-        this.videoSlot_.id = 'videoSlot';
         foundSource = true;
         break;
     }
@@ -3796,8 +3795,7 @@ spotx.test.VPAIDAd.prototype.addButtonListeners_ = function()
     var clickthruBtn = this.getElement_('clickthruBtn');
     clickthruBtn.addEventListener('click', this.clickThruButtonOnClick_.bind(this));
 
-    var clickthruVideo = window.top.document.getElementById('videoSlot');   //this.getElement_('videoSlot');
-    console.dir(clickthruVideo);
+    var clickthruVideo = document.getElementsByTagName('body');
     clickthruVideo.addEventListener('click', this.clickThruButtonOnClick_.bind(this));
 
     var muteBtn = this.getElement_('muteBtn');
