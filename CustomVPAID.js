@@ -4023,11 +4023,14 @@ spotx.test.VPAIDAd.prototype.updateTemplate = function()
 
     for(var element in vpaidTemplateButtons)
     {
+        console.dir(element);
         if(element.style.display === null || element.style.display === 'block') {
+            console.log("Hiding Element");
             element.style.display = 'none';
         }
         else
         {
+            console.log("Showing Element");
             element.style.display = 'block';
         }
     }
