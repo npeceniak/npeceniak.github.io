@@ -4036,7 +4036,7 @@ spotx.test.VPAIDAd.prototype.updateTemplate = function()
         //     vpaidTemplateButtons[i].style.display = 'block';
         // }
         console.log("Vpaid Buttons Style Proptery");
-        console.dir(vpaidTemplateButtons[i].style);
+        console.dir(vpaidTemplateButtons[i]);
     }
 };
 
