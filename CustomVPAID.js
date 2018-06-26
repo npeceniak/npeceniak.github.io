@@ -3687,30 +3687,33 @@ spotx.test.VPAIDAd.prototype.updateVideoSlot_ = function() {
     if (this.videoSlot_ === null) {
         this.videoSlot_.width = this.getAdWidth();
         this.videoSlot_.height = this.getAdHeight();
+        goog.style.setStyle(this.videoSlot_, "z-index", "0");
+        goog.style.setStyle(this.videoSlot_, "position", "absolute");
         this.slot_.appendChild(this.videoSlot_);
     }
     if (this.videoSlot_.parentNode === null) {
         goog.style.setStyle(this.videoSlot_, "z-index", "0");
         goog.style.setStyle(this.videoSlot_, "position", "absolute");
         this.slot_.appendChild(this.videoSlot_);
-      }
-  var foundSource = false;
-  // We can pass the video and mimetype in via parameters if this line is used.
-  // var videos = this.parameters_.videos || [];
+    }
+    var foundSource = false;
+    // We can pass the video and mimetype in via parameters if this line is used.
+    // var videos = this.parameters_.videos || [];
 
-  var videos = [{'url':'https://cdn.spotxcdn.com/website/integration_test/media/2017_q1/Video/SpotX_green_15_1366.mp4', 'mimetype':'video/mp4'}];
-  for (var i = 0; i < videos.length; i++) {
+    var videos = [{'url':'https://cdn.spotxcdn.com/website/integration_test/media/2017_q1/Video/SpotX_green_15_1366.mp4', 'mimetype':'video/mp4'}];
+    for (var i = 0; i < videos.length; i++) {
     // Choose the first video with a supported mimetype.
     if (this.videoSlot_.canPlayType(videos[i].mimetype) != '') {
-      this.videoSlot_.setAttribute('src', videos[i].url);
-      foundSource = true;
-      break;
+        this.videoSlot_.setAttribute('src', videos[i].url);
+        this.videoSlot_.id = 'videoSlot';
+        foundSource = true;
+        break;
     }
-  }
-  if (!foundSource) {
-    // Unable to find a source video.
-    this.publish(spotx.iab.VPAID.VPAID2Event.AD_ERROR);
-  }
+}
+    if (!foundSource) {
+        // Unable to find a source video.
+        this.publish(spotx.iab.VPAID.VPAID2Event.AD_ERROR);
+    }
 };
 
 /**
@@ -3792,6 +3795,10 @@ spotx.test.VPAIDAd.prototype.addButtonListeners_ = function()
 
     var clickthruBtn = this.getElement_('clickthruBtn');
     clickthruBtn.addEventListener('click', this.clickThruButtonOnClick_.bind(this));
+
+    var clickthruVideo = this.getElement_('videoSlot');
+    console.dir(clickthruVideo);
+    clickthruVideo.addEventListener('click', this.clickThruButtonOnClick_.bind(this));
 
     var muteBtn = this.getElement_('muteBtn');
     muteBtn.addEventListener('click', this.muteButtonOnClick_.bind(this));
