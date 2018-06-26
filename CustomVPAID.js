@@ -4024,17 +4024,17 @@ spotx.test.VPAIDAd.prototype.updateTemplate = function()
     console.log("Vpaid Buttons");
     console.dir(vpaidTemplateButtons);
 
-    for(var i = 0; i < 9; i++);
+    for(var i = 0; i < vpaidTemplateButtons.length; i++)
     {
-        // if(vpaidTemplateButtons[i].style.display === null || vpaidTemplateButtons[i].style.display === 'block') {
-        //     console.log("Hiding Element");
-        //     vpaidTemplateButtons[i].style.display = 'none';
-        // }
-        // else
-        // {
-        //     console.log("Showing Element");
-        //     vpaidTemplateButtons[i].style.display = 'block';
-        // }
+        if(vpaidTemplateButtons[i].style.display === null || vpaidTemplateButtons[i].style.display === 'block') {
+            console.log("Hiding Element");
+            vpaidTemplateButtons[i].style.display = 'none';
+        }
+        else
+        {
+            console.log("Showing Element");
+            vpaidTemplateButtons[i].style.display = 'block';
+        }
         console.log("Vpaid Buttons Style Proptery");
         console.dir(vpaidTemplateButtons[i]);
     }
