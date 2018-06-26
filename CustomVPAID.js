@@ -4021,7 +4021,7 @@ spotx.test.VPAIDAd.prototype.updateTemplate = function()
 
     var vpaidTemplateButtons = document.getElementsByClassName('vpaidTemplateButtons');
 
-    for(var i = 0, i < vpaidTemplateButtons.length; i++);
+    for(var i = 0; i < vpaidTemplateButtons.length; i++);
     {
         console.log("Vpaid Buttons");
         console.dir(vpaidTemplateButtons[i]);
